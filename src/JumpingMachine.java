@@ -1,6 +1,7 @@
+import GUI.Trace;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public class JumpingMachine{
    HashMap<String,String>binding;

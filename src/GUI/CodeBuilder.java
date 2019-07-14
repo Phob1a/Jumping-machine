@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class CodeBuilder {
 
     private int cnt;
+    private Point[] points;
 
     public int getCnt() {
         return cnt;

@@ -1,4 +1,7 @@
+package GUI;
+
 import GUI.Point;
+import javafx.scene.shape.Polygon;
 
 /**
  * thunk
@@ -15,6 +18,7 @@ public class Trace {
     private String type;
     private String shape;
     private String text;
+    private Polygon p;
     private Point linkPoint;
 
 

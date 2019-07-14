@@ -9,29 +9,22 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: 000000;" onMouseClicked="#drawFrame" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UIController">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#drawFrame" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: 000000;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UIController">
    <children>
-      <Pane layoutY="-2.0" prefHeight="400.0" prefWidth="156.0" style="-fx-background-color: #cccccc;">
+      <Pane prefHeight="400.0" prefWidth="156.0" style="-fx-background-color: #cccccc;">
          <children>
-            <Polygon fill="#7eb1e1" layoutX="65.0" layoutY="77.0" points="-51.0, -7.0, -36.0, 7.0, 69.0, 7.0, 69.0, -18.0, -36.0, -18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fill="#7eb1e1" layoutX="65.0" layoutY="131.0" points="-51.0, -7.0, -36.0, 7.0, 69.0, 7.0, 69.0, -18.0, -36.0, -18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fill="#7eb1e1" layoutX="66.0" layoutY="184.0" points="-51.0, -7.0, -36.0, 7.0, 69.0, 7.0, 69.0, -18.0, -36.0, -18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label layoutX="51.0" layoutY="63.0" text="print" textFill="WHITE" />
-            <Label layoutX="47.0" layoutY="117.0" prefHeight="17.0" prefWidth="37.0" text="force" textFill="WHITE" />
-            <Label layoutX="46.0" layoutY="170.0" text="return" textFill="WHITE" />
-            <Button fx:id="printBtn" layoutX="17.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#addPrintTrace" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: TRANSPARENT;" textFill="TRANSPARENT" />
-            <Ellipse fill="#d6e4f2" layoutX="74.0" layoutY="234.0" radiusX="60.0" radiusY="13.0" stroke="BLACK" strokeType="INSIDE" />
-            <Button fx:id="forceBtn" layoutX="14.0" layoutY="112.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: TRANSPARENT;" textFill="TRANSPARENT" />
-            <Button fx:id="returnBtn" layoutX="15.0" layoutY="165.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: TRANSPARENT;" textFill="TRANSPARENT" />
-            <Button fx:id="valueBtn" layoutX="14.0" layoutY="221.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: TRANSPARENT;" textFill="TRANSPARENT" />
-            <TextField fx:id="inputField" layoutX="24.0" layoutY="274.0" prefHeight="27.0" prefWidth="101.0" visible="false" />
-            <Button fx:id="conBtn" layoutX="45.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#getInput" style="-fx-background-color: #aa2222;" text="Ok" textFill="#f5cece" visible="false" />
+            <Polygon fx:id="pgonBtn" fill="#7eb1e1" layoutX="65.0" layoutY="77.0" onMouseClicked="#setPgon" points="-51.0, -7.0, -36.0, 7.0, 69.0, 7.0, 69.0, -18.0, -36.0, -18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Ellipse fx:id="ellipseBtn" fill="#d6e4f2" layoutX="75.0" layoutY="125.0" onMouseClicked="#setEllipse" radiusX="60.0" radiusY="13.0" stroke="BLACK" strokeType="INSIDE" />
+            <TextField fx:id="inputField" layoutX="24.0" layoutY="254.0" prefHeight="27.0" prefWidth="101.0" />
+            <Polygon fx:id="hgonBtn" fill="#eee7c3" layoutX="70.0" layoutY="188.0" onMouseClicked="#setHgon" points="-39.0, 3.0, 50.0, 3.0, 60.0, -9.0, 50.0, -21.0, -39.0, -21.0, -50.0, -9.0" stroke="BLACK" strokeType="INSIDE" />
+            <Button fx:id="conBtn" layoutX="41.0" layoutY="292.0" mnemonicParsing="false" style="-fx-background-color: #eeccaa;" text="Confirm" onMouseClicked="#getInput" textFill="#f2f2f2" />
+            <Button fx:id="linkBtn" layoutX="41.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#drawLine" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #eeeeee;" text="Link" />
          </children>
       </Pane>
-      <Pane layoutX="156.0" layoutY="45.0" onMouseClicked="#drawFrame" prefHeight="356.0" prefWidth="467.0" />
       <Label layoutX="186.0" layoutY="19.0" prefHeight="26.0" prefWidth="46.0" text="Stack:" textFill="#800b0b" />
       <Label fx:id="stackState" layoutX="254.0" layoutY="23.0" prefHeight="17.0" prefWidth="37.0" text="nil" />
       <Line endX="50.0" endY="356.0" layoutX="575.0" layoutY="44.0" startX="50.0" startY="-44.0" />
       <ListView layoutX="626.0" prefHeight="400.0" prefWidth="174.0" />
+      <Line endX="369.0" layoutX="257.0" layoutY="59.0" startX="-100.0" />
    </children>
 </Pane>
