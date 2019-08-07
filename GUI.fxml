@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Polygon?>
+
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1200.0" style="-fx-background-color: 000000;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BuildController">
+   <children>
+      <Pane layoutY="237.0" prefHeight="400.0" prefWidth="156.0" style="-fx-background-color: #cccccc;">
+         <children>
+            <Button fx:id="tagBtn" layoutX="0.0" layoutY="0.0" disable="true" visible="false" text="ok"></Button>
+            <TextField fx:id="tagInput" layoutX="0.0" layoutY="0.0" disable="true" visible="false"></TextField>
+            <Polygon fx:id="pgonBtn" fill="#7eb1e1" layoutX="65.0" layoutY="77.0" onMouseClicked="#setPgon" points="-51.0, -7.0, -36.0, 7.0, 69.0, 7.0, 69.0, -18.0, -36.0, -18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Ellipse fx:id="ellipseBtn" fill="#d6e4f2" layoutX="75.0" layoutY="125.0" onMouseClicked="#setEllipse" radiusX="60.0" radiusY="13.0" stroke="BLACK" strokeType="INSIDE" />
+            <TextField fx:id="inputField" layoutX="24.0" layoutY="254.0" prefHeight="27.0" prefWidth="101.0" />
+            <Polygon fx:id="hgonBtn" fill="#eee7c3" layoutX="70.0" layoutY="188.0" onMouseClicked="#setHgon" points="-39.0, 3.0, 50.0, 3.0, 60.0, -9.0, 50.0, -21.0, -39.0, -21.0, -50.0, -9.0" stroke="BLACK" strokeType="INSIDE" />
+            <Button fx:id="conBtn" layoutX="41.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#getInput" style="-fx-background-color: #eeccaa;" text="Confirm" textFill="#f2f2f2" />
+            <Button fx:id="linkBtn" layoutX="41.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#drawLine" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #eeeeee;" text="Link" />
+            <Button fx:id="runBtn" layoutX="41.0" layoutY="318.0" mnemonicParsing="false" onMouseClicked="#runBtnPressed" prefHeight="27.0" prefWidth="67.0" style="-fx-background-color: #950821;" text="Run" textFill="#fce1e1" />
+            <Button fx:id="deleteBtn" layoutX="45.0" layoutY="353.0" mnemonicParsing="false" onMouseClicked="#deleteFrame" text="Delete" />
+         </children>
+      </Pane>
+   </children>
+</Pane>
