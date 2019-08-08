@@ -9,13 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,13 +44,25 @@ public class BuildController {
 
 
     @FXML
-    private Polygon pgonBtn;
+    private Rectangle forceBtn;
 
     @FXML
-    private Ellipse ellipseBtn;
+    private Rectangle returnBtn;
 
     @FXML
-    private Polygon hgonBtn;
+    private Rectangle letbeBtn;
+
+    @FXML
+    private Rectangle pmBtn;
+
+    @FXML
+    private Rectangle pushBtn;
+
+    @FXML
+    private Rectangle popBtn;
+
+    @FXML
+    private Rectangle toBtn;
 
     @FXML
     private Button linkBtn;
@@ -83,6 +95,39 @@ public class BuildController {
 
     @FXML
     private Button tagBtn=new Button("ok");
+
+    public void forcePressed(){
+        presetTrace("Pgon","force x");
+    }
+
+    public void returnPressed(){
+        presetTrace("Pgon","return x");
+    }
+
+    public void letbePressed(){
+        presetTrace("Pgon","let x be");
+    }
+
+    public void pushPressed(){
+        presetTrace("Pgon","#tag'");
+    }
+
+    public void popPressed(){
+        presetTrace("Pgon","λ");
+    }
+
+    public void pmPressed(){
+        presetTrace("Pgon","pm x as");
+    }
+
+    public void toPressed(){
+        presetTrace("Hgon","to");
+    }
+
+    public void presetTrace(String type,String text){
+        drawType=type;
+        inputField.setText(text);
+    }
 
     public void setPgon(MouseEvent event){
         drawType="Pgon";
@@ -139,6 +184,7 @@ public class BuildController {
         shape.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                if(event.getButton()== MouseButton.SECONDARY);
                 if(!deletePressed) return;
                 int id=Integer.parseInt(shape.getId());
                 Label label=JKTree.get(id).getLabel();
@@ -157,23 +203,75 @@ public class BuildController {
     }
 
 
-
-
-    public void getInput(MouseEvent event){
-
-        String text=inputField.getText();
-        tag=text;
-        pressed=true;
-        if(drawType=="Pgon"){
-            drawPgon();
-        }
-        else if(drawType=="Hgon"){
-            drawHgon();
-        }
-        else if(drawType=="Ellipse"){
-            drawEllipse();
+    public void addTrace(KeyEvent event){
+        if(event.getCode()== KeyCode.ENTER){
+            if(inputField.getText().isEmpty()){
+                return;
+            }
+            drawTrace();
         }
     }
+
+    public void drawTrace(){
+        String text=inputField.getText();
+        Polygon p = new Polygon();
+        double x=0.0,y=10.0;
+        if(drawType.equals("Pgon")){
+            p.getPoints().addAll(new Double[]{
+                    x, y,
+                    x + 10, y - 10,
+                    x + 130, y - 10,
+                    x + 130, y + 10,
+                    x + 10, y + 10
+            });
+        }
+        else{
+            p.getPoints().addAll(new Double[]{
+                    x, y,
+                    x + 10, y - 10,
+                    x + 130, y - 10,
+                    x+140,y,
+                    x + 130, y + 10,
+                    x + 10, y + 10
+            });
+        }
+        int id=JKTree.size();
+        JKTrace trace=new JKTrace(drawType,text);
+        JKTree.add(trace);
+        p.setFill(Color.WHITE);
+        p.setStroke(Color.BLACK);
+        p.setId(Integer.toString(id));
+        trace.setId(id);
+        Label l = new Label(text);
+        l.setLayoutX(x + 15);
+        l.setLayoutY(y - 5);
+        trace.setShape(p);
+        trace.setLabel(l);
+        trace.linkpoints.add(new Point(x,y,id));
+        if(trace.getType().equals("Pgon")){
+            trace.linkpoints.add(new Point(x+60,y,id));
+        }
+        else{
+            trace.linkpoints.add(new Point(x+140,y,id));
+        }
+        addDragFunction(p,l);
+        root.getChildren().add(p);
+        root.getChildren().add(l);
+        inputField.setText(null);
+    }
+
+//    public void getInput(MouseEvent event){
+//
+//        String text=inputField.getText();
+//        tag=text;
+//        pressed=true;
+//        if(drawType=="Pgon"){
+//            drawPgon();
+//        }
+//        else if(drawType=="Hgon"){
+//            drawHgon();
+//        }
+//    }
 
     public void drawPgon() {
             root.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -252,37 +350,37 @@ public class BuildController {
         });
     }
 
-    public void drawEllipse(){
-        root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (!pressed) return;
-                double x = event.getX();
-                double y = event.getY();
-                JKTrace trace=new JKTrace("Ellipse",tag);
-                JKTree.add(trace);
-                int id=JKTree.size()-1;
-                trace.setId(id);
-                Ellipse e=new Ellipse(x,y,50,10);
-                e.setFill(Color.WHITE);
-                e.setStroke(Color.BLACK);
-                e.setId(Integer.toString(id));
-                Label l = new Label(tag);
-                l.setLayoutX(x + 15);
-                l.setLayoutY(y - 5);
-                trace.setShape(e);
-                trace.setLabel(l);
-                trace.linkpoints.add(new Point(x,y-10,id));
-                trace.linkpoints.add(new Point(x,y+10,id));
-                addDragFunction(e,l);
-
-                root.getChildren().add(e);
-                root.getChildren().add(l);
-                checkStart();
-                pressed = false;
-            }
-        });
-    }
+//    public void drawEllipse(){
+//        root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                if (!pressed) return;
+//                double x = event.getX();
+//                double y = event.getY();
+//                JKTrace trace=new JKTrace("Ellipse",tag);
+//                JKTree.add(trace);
+//                int id=JKTree.size()-1;
+//                trace.setId(id);
+//                Ellipse e=new Ellipse(x,y,50,10);
+//                e.setFill(Color.WHITE);
+//                e.setStroke(Color.BLACK);
+//                e.setId(Integer.toString(id));
+//                Label l = new Label(tag);
+//                l.setLayoutX(x + 15);
+//                l.setLayoutY(y - 5);
+//                trace.setShape(e);
+//                trace.setLabel(l);
+//                trace.linkpoints.add(new Point(x,y-10,id));
+//                trace.linkpoints.add(new Point(x,y+10,id));
+//                addDragFunction(e,l);
+//
+//                root.getChildren().add(e);
+//                root.getChildren().add(l);
+//                checkStart();
+//                pressed = false;
+//            }
+//        });
+//    }
 
 
     public void drawLine(){
@@ -318,33 +416,36 @@ public class BuildController {
                                 l.setOnMouseClicked(new EventHandler<MouseEvent>() {
                                     @Override
                                     public void handle(MouseEvent event) {
-                                        l.setStroke(Color.RED);
-                                        double x=event.getX();
-                                        double y=event.getY();
-                                        tagInput.setLayoutX(x+5);
-                                        tagInput.setLayoutY(y+5);
-                                        tagBtn.setLayoutX(x+5);
-                                        tagBtn.setLayoutY(y+30);
-                                        tagInput.setVisible(true);
-                                        tagInput.setDisable(false);
-                                        tagBtn.setVisible(true);
-                                        tagBtn.setDisable(false);
-                                        tagBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                                            @Override
-                                            public void handle(MouseEvent event) {
+                                        if(event.getClickCount()==2) {
+                                            l.setStroke(Color.RED);
+                                            double x = event.getX();
+                                            double y = event.getY();
+                                            tagInput.setLayoutX(x + 5);
+                                            tagInput.setLayoutY(y + 5);
+                                            tagBtn.setLayoutX(x + 5);
+                                            tagBtn.setLayoutY(y + 30);
+                                            tagInput.setVisible(true);
+                                            tagInput.setDisable(false);
+                                            tagBtn.setVisible(true);
+                                            tagBtn.setDisable(false);
+                                            tagBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                                @Override
+                                                public void handle(MouseEvent event) {
 
-                                                double nx=(link.getP1().getX()+link.getP2().getX())*0.5;
-                                                double ny=(link.getP1().getY()+link.getP2().getY())*0.5;
-                                                link.getTag().setText(tagInput.getText());
-                                                link.getTag().setLayoutX(nx);
-                                                link.getTag().setLayoutY(ny);
-                                                tagBtn.setVisible(false);
-                                                tagBtn.setDisable(true);
-                                                tagInput.setVisible(false);
-                                                tagInput.setDisable(true);
-                                                l.setStroke(Color.BLACK);
-                                            }
-                                        });
+                                                    double nx = (link.getP1().getX() + link.getP2().getX()) * 0.5;
+                                                    double ny = (link.getP1().getY() + link.getP2().getY()) * 0.5;
+                                                    link.getTag().setText(tagInput.getText());
+                                                    link.getTag().setLayoutX(nx);
+                                                    link.getTag().setLayoutY(ny);
+                                                    tagBtn.setVisible(false);
+                                                    tagBtn.setDisable(true);
+                                                    tagInput.setVisible(false);
+                                                    tagInput.setDisable(true);
+                                                    tagInput.setText(null);
+                                                    l.setStroke(Color.BLACK);
+                                                }
+                                            });
+                                        }
                                         Label tagLabel=new Label();
 
                                     }

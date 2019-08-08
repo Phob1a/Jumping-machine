@@ -2,6 +2,8 @@ import javafx.scene.control.Label;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
+import java.util.ArrayList;
+
 public class Link {
 
 
@@ -14,6 +16,7 @@ public class Link {
     private Point p2;
     Shape executeTag;
     private Label tag;
+    ArrayList<String> bindings;
 
     public Link(Line line, Point p1, Point p2){
         this.line=line;
@@ -23,6 +26,7 @@ public class Link {
         this.traceID2=p2.getTraceID();
         this.settled=true;
         this.tag=new Label();
+        this.bindings=new ArrayList<>();
     }
 
     public Line getLine() {
