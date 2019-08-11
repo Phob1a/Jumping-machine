@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
+import org.omg.CORBA.TRANSIENT;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class BuildController {
     double fy=900.0;
     public int id;
     int startID=-1;
-    Point st,ed;
+    Point st=new Point(-1.0,-1.0),ed=new Point(-1.0,-1.0);
 
     int stId,edId;
 
@@ -88,13 +89,12 @@ public class BuildController {
     @FXML
     private Pane runroot;
 
-
     @FXML
-    private TextField tagInput=new TextField();
+    private TextField tagInput;
 
 
-    @FXML
-    private Button tagBtn=new Button("ok");
+
+
 
     public void forcePressed(){
         presetTrace("Pgon","force x");
@@ -122,6 +122,10 @@ public class BuildController {
 
     public void toPressed(){
         presetTrace("Hgon","to");
+    }
+
+    public void printPressed(){
+        presetTrace("Pgon","print \"\"");
     }
 
     public void presetTrace(String type,String text){
@@ -173,6 +177,7 @@ public class BuildController {
                             link.getLine().setEndY(link.getLine().getEndY()+deltaY);
 
                         }
+                        link.locateBindings();
                     }
                     p.setX(p.getX()+deltaX);
                     p.setY(p.getY()+deltaY);
@@ -205,11 +210,36 @@ public class BuildController {
 
     public void addTrace(KeyEvent event){
         if(event.getCode()== KeyCode.ENTER){
-            if(inputField.getText().isEmpty()){
-                return;
-            }
-            drawTrace();
+            if(!inputField.getText().isEmpty())
+                drawTrace();
         }
+    }
+
+    public void drawLine(){
+        Point a=new Point(-1.0,0);
+        Point b=new Point(-1.0,0);
+        for(JKTrace t:JKTree){
+            for(Point p:t.linkpoints){
+                if(calDis(st,p)<20.0){
+                    a=p;
+                }
+                if(calDis(ed,p)<20.0){
+                    b=p;
+                }
+            }
+        }
+        if(a.getX()==-1.0||b.getX()==-1.0) return;
+        Line line=new Line(a.getX(),a.getY(),b.getX(),b.getY());
+        //line.setStroke(Color.TRANSPARENT);
+        Link link=new Link(line,a,b);
+        addTagFunction(link);
+        root.getChildren().add(line);
+        a.links.add(link);
+        b.links.add(link);
+        st.setX(-1.0);
+        st.setY(-1.0);
+        ed.setX(-1.0);
+        ed.setY(-1.0);
     }
 
     public void drawTrace(){
@@ -257,8 +287,79 @@ public class BuildController {
         addDragFunction(p,l);
         root.getChildren().add(p);
         root.getChildren().add(l);
-        inputField.setText(null);
+        inputField.clear();
     }
+
+
+    public void addTagFunction(Link link){
+        Line line=link.getLine();
+        line.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                line.setStroke(Color.RED);
+                double x=(line.getStartX()+line.getEndX())*0.5;
+                double y=(line.getStartY()+line.getEndY())*0.5;
+                tagInput=new TextField();
+                tagInput.setLayoutX(x + 5);
+                tagInput.setLayoutY(y + 5);
+                root.getChildren().add(tagInput);
+
+                tagInput.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        if(event.getCode()==KeyCode.ENTER){
+                        String text=tagInput.getText();
+                        if(text.charAt(0)=='#') {
+                            if(link.getTag().getText().isEmpty()) {
+                                double fx=link.getP1().getX()+(link.getP2().getX()-link.getP1().getX())*0.15;
+                                double fy=link.getP1().getY()+(link.getP2().getY()-link.getP1().getY())*0.15;
+                                link.setTag(new Label(text));
+                                link.getTag().setLayoutX(fx);
+                                link.getTag().setLayoutY(fy);
+                                root.getChildren().add(link.getTag());
+                            }
+                            else{
+                                link.getTag().setText(text);
+                            }
+                          }
+                        else{
+
+                            Label label=new Label(text);
+                            Ellipse e=new Ellipse(0,0,50,10);
+                            e.setFill(Color.WHITE);
+                            e.setStroke(Color.BLACK);
+                            Binding binding=new Binding(e,label);
+                            if(link.bindings.size()<2) {
+                                link.bindings.add(binding);
+                                link.locateBindings();
+                                root.getChildren().add(e);
+                                root.getChildren().add(label);
+                            }
+                        }
+
+                            tagInput.clear();
+                            root.getChildren().remove(tagInput);
+                            line.setStroke(Color.BLACK);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+
+    public void addEllipse(Link link,String text){
+        Line line=link.getLine();
+        int bindID=link.bindings.size();
+        double x=line.getStartX()+(line.getEndX()-line.getStartX())*1.0*bindID/3;
+        double y=line.getStartY()+(line.getEndY()-line.getStartY())*1.0*bindID/3;
+        Ellipse e=new Ellipse(x,y,50.0,10.0);
+        e.setFill(Color.WHITE);
+        e.setStroke(Color.BLACK);
+
+    }
+
 
 //    public void getInput(MouseEvent event){
 //
@@ -383,82 +484,82 @@ public class BuildController {
 //    }
 
 
-    public void drawLine(){
-        st=new Point(0,0);
-        ed=new Point(0,0);
-        root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (st.getX() != 0 && ed.getX() != 0) return;
-                Point h = new Point(event.getX(), event.getY());
-                for(int i=0;i<JKTree.size();i++){
-                    for(Point p:JKTree.get(i).linkpoints){
-                        if(calDis(h,p)<15.0){
-                            if(st.getX()==0){
-                                //st.setX(p.getX());
-                                //st.setY(p.getY());
-                                st=p;
-                                stId=p.getTraceID();
-                                break;
-                            }
-                            else{
-                                //ed.setX(p.getX());
-                                //ed.setY(p.getY());
-                                edId=p.getTraceID();
-                                ed=p;
-                                Line l=new Line(st.getX(),st.getY(),ed.getX(),ed.getY());
-                                l.setStroke(Color.BLACK);
-                                root.getChildren().add(l);
-                                Link link=new Link(l,st,ed);
-                                root.getChildren().add(link.getTag());
-                                st.links.add(link);
-                                ed.links.add(link);
-                                l.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                                    @Override
-                                    public void handle(MouseEvent event) {
-                                        if(event.getClickCount()==2) {
-                                            l.setStroke(Color.RED);
-                                            double x = event.getX();
-                                            double y = event.getY();
-                                            tagInput.setLayoutX(x + 5);
-                                            tagInput.setLayoutY(y + 5);
-                                            tagBtn.setLayoutX(x + 5);
-                                            tagBtn.setLayoutY(y + 30);
-                                            tagInput.setVisible(true);
-                                            tagInput.setDisable(false);
-                                            tagBtn.setVisible(true);
-                                            tagBtn.setDisable(false);
-                                            tagBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                                                @Override
-                                                public void handle(MouseEvent event) {
-
-                                                    double nx = (link.getP1().getX() + link.getP2().getX()) * 0.5;
-                                                    double ny = (link.getP1().getY() + link.getP2().getY()) * 0.5;
-                                                    link.getTag().setText(tagInput.getText());
-                                                    link.getTag().setLayoutX(nx);
-                                                    link.getTag().setLayoutY(ny);
-                                                    tagBtn.setVisible(false);
-                                                    tagBtn.setDisable(true);
-                                                    tagInput.setVisible(false);
-                                                    tagInput.setDisable(true);
-                                                    tagInput.setText(null);
-                                                    l.setStroke(Color.BLACK);
-                                                }
-                                            });
-                                        }
-                                        Label tagLabel=new Label();
-
-                                    }
-                                });
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-
-        });
-    }
+//    public void drawLine(){
+//        st=new Point(0,0);
+//        ed=new Point(0,0);
+//        root.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                if (st.getX() != 0 && ed.getX() != 0) return;
+//                Point h = new Point(event.getX(), event.getY());
+//                for(int i=0;i<JKTree.size();i++){
+//                    for(Point p:JKTree.get(i).linkpoints){
+//                        if(calDis(h,p)<15.0){
+//                            if(st.getX()==0){
+//                                //st.setX(p.getX());
+//                                //st.setY(p.getY());
+//                                st=p;
+//                                stId=p.getTraceID();
+//                                break;
+//                            }
+//                            else{
+//                                //ed.setX(p.getX());
+//                                //ed.setY(p.getY());
+//                                edId=p.getTraceID();
+//                                ed=p;
+//                                Line l=new Line(st.getX(),st.getY(),ed.getX(),ed.getY());
+//                                l.setStroke(Color.BLACK);
+//                                root.getChildren().add(l);
+//                                Link link=new Link(l,st,ed);
+//                                root.getChildren().add(link.getTag());
+//                                st.links.add(link);
+//                                ed.links.add(link);
+//                                l.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                                    @Override
+//                                    public void handle(MouseEvent event) {
+//                                        if(event.getClickCount()==2) {
+//                                            l.setStroke(Color.RED);
+//                                            double x = event.getX();
+//                                            double y = event.getY();
+//                                            tagInput.setLayoutX(x + 5);
+//                                            tagInput.setLayoutY(y + 5);
+//                                            tagBtn.setLayoutX(x + 5);
+//                                            tagBtn.setLayoutY(y + 30);
+//                                            tagInput.setVisible(true);
+//                                            tagInput.setDisable(false);
+//                                            tagBtn.setVisible(true);
+//                                            tagBtn.setDisable(false);
+//                                            tagBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                                                @Override
+//                                                public void handle(MouseEvent event) {
+//
+//                                                    double nx = (link.getP1().getX() + link.getP2().getX()) * 0.5;
+//                                                    double ny = (link.getP1().getY() + link.getP2().getY()) * 0.5;
+//                                                    link.getTag().setText(tagInput.getText());
+//                                                    link.getTag().setLayoutX(nx);
+//                                                    link.getTag().setLayoutY(ny);
+//                                                    tagBtn.setVisible(false);
+//                                                    tagBtn.setDisable(true);
+//                                                    tagInput.setVisible(false);
+//                                                    tagInput.setDisable(true);
+//                                                    tagInput.setText(null);
+//                                                    l.setStroke(Color.BLACK);
+//                                                }
+//                                            });
+//                                        }
+//                                        Label tagLabel=new Label();
+//
+//                                    }
+//                                });
+//                                return;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//
+//        });
+//    }
 
     public double calDis(Point a, Point b) {
         return Math.sqrt((a.getX()-b.getX())*(a.getX()-b.getX())+(a.getY()-b.getY())*(a.getY()-b.getY()));
@@ -503,5 +604,25 @@ public class BuildController {
 
     public void addTagToLine(MouseEvent mouseEvent) {
         //link.setTag(new Label(tagInput.getText()));
+    }
+
+    public void setLinePoint(MouseEvent event) {
+        if(event.getButton()==MouseButton.PRIMARY&&event.getClickCount()==2){
+            if(st.getX()==-1.0&&ed.getX()==-1.0){
+                st.setX(event.getX());
+                st.setY(event.getY());
+            }
+            else if(ed.getX()==-1.0){
+                ed.setX(event.getX());
+                ed.setY(event.getY());
+                drawLine();
+            }
+            else{
+                st.setX(event.getX());
+                st.setY(event.getY());
+                ed.setX(-1.0);
+                ed.setY(-1.0);
+            }
+        }
     }
 }

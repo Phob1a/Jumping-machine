@@ -9,7 +9,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
         primaryStage.setTitle("Jumping machine builder");
-        Scene scene =new Scene(root, 1200, 1000);
+        Scene scene =new Scene(root, 900, 1000);
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
         //primaryStage.setResizable(false);
         primaryStage.setScene(scene);

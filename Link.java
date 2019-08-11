@@ -16,7 +16,17 @@ public class Link {
     private Point p2;
     Shape executeTag;
     private Label tag;
-    ArrayList<String> bindings;
+    private Link correspondJKLink;
+
+    public Link getCorrespondJKLink() {
+        return correspondJKLink;
+    }
+
+    public void setCorrespondJKLink(Link correspondJKLink) {
+        this.correspondJKLink = correspondJKLink;
+    }
+
+    ArrayList<Binding> bindings;
 
     public Link(Line line, Point p1, Point p2){
         this.line=line;
@@ -84,5 +94,37 @@ public class Link {
 
     public void setSettled(boolean settled) {
         this.settled = settled;
+    }
+
+
+    public void locateBindings(){
+        if(!this.getTag().getText().isEmpty()){
+            double x=this.getP1().getX()+(this.getP2().getX()-this.getP1().getX())*0.25;
+            double y=this.getP1().getY()+(this.getP2().getY()-this.getP1().getY())*0.25;
+            this.getTag().setLayoutX(x);
+            this.getTag().setLayoutY(y);
+        }
+        if(this.bindings.size()==1){
+            double x=(this.getP2().getX()+this.getP1().getX())*0.5;
+            double y=(this.getP2().getY()+this.getP1().getY())*0.5;
+            this.bindings.get(0).getEllipse().setCenterX(x);
+            this.bindings.get(0).getEllipse().setCenterY(y);
+            this.bindings.get(0).getBindKey().setLayoutX(x-20);
+            this.bindings.get(0).getBindKey().setLayoutY(y-5);
+        }
+        else if(this.bindings.size()==2){
+                double x1=this.getP1().getX()+(this.getP2().getX()-this.getP1().getX())*0.5;
+                double x2=this.getP1().getX()+(this.getP2().getX()-this.getP1().getX())*0.75;
+                double y1=this.getP1().getY()+(this.getP2().getY()-this.getP1().getY())*0.5;
+                double y2=this.getP1().getY()+(this.getP2().getY()-this.getP1().getY())*0.75;
+                this.bindings.get(0).getEllipse().setCenterX(x1);
+                this.bindings.get(0).getEllipse().setCenterY(y1);
+                this.bindings.get(1).getEllipse().setCenterX(x2);
+                this.bindings.get(1).getEllipse().setCenterY(y2);
+                this.bindings.get(0).getBindKey().setLayoutX(x1-20);
+                this.bindings.get(0).getBindKey().setLayoutY(y1-5);
+                this.bindings.get(1).getBindKey().setLayoutX(x2-20);
+                this.bindings.get(1).getBindKey().setLayoutY(y2-5);
+        }
     }
 }

@@ -1,3 +1,4 @@
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
@@ -63,10 +64,12 @@ public class JumpTrace extends Trace {
 
         for(Point p:trace.linkpoints){
             for(Link link:p.links){
-                if(!link.isSettled()){
+                if(link.getLine().getStroke().equals(Color.RED)){
                     link.setP2(this.linkpoints.get(0));
                     link.setTraceID2(this.getId());
-                    link.setSettled(true);
+                    link.getLine().setStroke(Color.BLACK);
+                    link.getCorrespondJKLink().getLine().setStroke(Color.BLACK);
+                    //link.setSettled(true);
                     this.linkpoints.get(0).links.add(link);
                     return;
                 }
