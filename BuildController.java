@@ -84,7 +84,7 @@ public class BuildController {
     private Button conBtn;
 
     @FXML
-    private Button runBtn;
+    private Rectangle runBtn;
 
     @FXML
     private Pane runroot;
