@@ -109,7 +109,7 @@ public class Link {
             double y=(this.getP2().getY()+this.getP1().getY())*0.5;
             this.bindings.get(0).getEllipse().setCenterX(x);
             this.bindings.get(0).getEllipse().setCenterY(y);
-            this.bindings.get(0).getBindKey().setLayoutX(x-20);
+            this.bindings.get(0).setEllipseRX();
             this.bindings.get(0).getBindKey().setLayoutY(y-5);
         }
         else if(this.bindings.size()==2){
@@ -121,9 +121,9 @@ public class Link {
                 this.bindings.get(0).getEllipse().setCenterY(y1);
                 this.bindings.get(1).getEllipse().setCenterX(x2);
                 this.bindings.get(1).getEllipse().setCenterY(y2);
-                this.bindings.get(0).getBindKey().setLayoutX(x1-20);
+                this.bindings.get(0).setEllipseRX();
                 this.bindings.get(0).getBindKey().setLayoutY(y1-5);
-                this.bindings.get(1).getBindKey().setLayoutX(x2-20);
+                this.bindings.get(1).setEllipseRX();
                 this.bindings.get(1).getBindKey().setLayoutY(y2-5);
         }
     }

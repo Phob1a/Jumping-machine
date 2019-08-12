@@ -45,15 +45,11 @@ public class JumpTrace extends Trace {
         double y=point.getY();
         if(this.getType().equals("Pgon")){
             this.linkpoints.add(new Point(x,y,this.getId()));
-            this.linkpoints.add(new Point(x+55,y,this.getId()));
+            //this.linkpoints.add(new Point(x+55,y,this.getId()));
         }
         else if(this.getType().equals("Hgon")){
             this.linkpoints.add(new Point(x,y,this.getId()));
-            this.linkpoints.add(new Point(x+110,y,this.getId()));
-        }
-        else{
-            this.linkpoints.add(new Point(x,y,this.getId()));
-            this.linkpoints.add(new Point(x,y+20,this.getId()));
+            this.linkpoints.add(new Point(x+80,y,this.getId()));
         }
 
     }

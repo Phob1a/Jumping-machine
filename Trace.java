@@ -1,4 +1,5 @@
 import javafx.scene.control.Label;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
@@ -77,5 +78,23 @@ public class Trace {
 
     public void setLabel(Label label) {
         this.label = label;
+    }
+
+    public void addPgon() {
+        double len=this.label.getText().length()*5.0;
+        double x=this.linkpoints.get(0).getX();
+        double y=this.linkpoints.get(0).getY();
+        Polygon p=new Polygon();
+        p.getPoints().addAll(new Double[]{
+                x,y,
+                x+10,y-10,
+                x+len+60.0,y-10,
+                x+len+60.0,y+10,
+                x+10,y+10
+        });
+        this.setShape(p);
+        if(this.linkpoints.size()==1){
+            this.linkpoints.add(new Point((x+len+60)*0.5,y,this.getId()));
+        }
     }
 }

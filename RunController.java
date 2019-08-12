@@ -246,7 +246,7 @@ public class RunController {
         }
         else{
             String tmp=value.substring(1,value.length()-1);
-            String[] val=value.split(",");
+            String[] val=tmp.split(",");
             if(trace.bindTable.containsKey(val[0])){
                 val[0]=trace.bindTable.get(val[0]);
             }
@@ -281,28 +281,28 @@ public class RunController {
 
     public String[] stringHandle(){
         String[] str=new String[2];
-        value=value.substring(1,value.length()-1);
+        String val=value.substring(1,value.length()-1);
         int stIndex=0;
-        if(value.charAt(stIndex)!='('){
-            for(int i=1;i<value.length();i++){
-                if(value.charAt(i)==','){
-                    str[0]=value.substring(0,i);
-                    str[1]=value.substring(i+1);
+        if(val.charAt(stIndex)!='('){
+            for(int i=1;i<val.length();i++){
+                if(val.charAt(i)==','){
+                    str[0]=val.substring(0,i);
+                    str[1]=val.substring(i+1);
                     return str;
                 }
             }
         }
         else{
             int cnt=1;
-            for(int i=1;i<value.length();i++){
-                if(value.charAt(i)=='('){
+            for(int i=1;i<val.length();i++){
+                if(val.charAt(i)=='('){
                     cnt++;
                 }
-                else if(value.charAt(i)==')'){
+                else if(val.charAt(i)==')'){
                     cnt--;
                     if(cnt==0){
-                        str[0]=value.substring(0,i+1);
-                        str[1]=value.substring(i+2);
+                        str[0]=val.substring(0,i+1);
+                        str[1]=val.substring(i+2);
                         return str;
                     }
                 }
@@ -343,45 +343,34 @@ public class RunController {
     }
 
     public void addTrace() {
-        Shape shape;
-
-        if(JKTree.get(jkID).getType().equals("Pgon")){
-           shape=drawPgon();
-        }
-        else if(JKTree.get(jkID).getType().equals("Hgon")){
-           shape=drawHgon();
-        }
-        else{
-            shape=drawEllipse();
-        }
-
         Label label=new Label(JKTree.get(jkID).getText());
         JumpTrace trace=new JumpTrace(JKTree.get(jkID).getType(),JKTree.get(jkID).getText());
         jumpTree.add(trace);
         oldJumpID=jumpID;
         jumpID=jumpTree.size()-1;
-            label.setLayoutX(point.getX() + 25);
-            label.setLayoutY(point.getY() - 15);
-            trace.executeLabel.getPoints().addAll(new Double[]{
-                    point.getX()+115,point.getY()+5,
-                    point.getX()+116.732,point.getY()+4,
-                    point.getX()+116.732,point.getY()+6,
-            });
-            trace.executeLabel.setFill(Color.RED);
-            Label idLabel=new Label(Integer.toString(jumpID));
-            idLabel.setLayoutX(point.getX()+115);
-            idLabel.setLayoutY(point.getY()-3);
+        label.setLayoutX(point.getX() + 15);
+        label.setLayoutY(point.getY() - 5);
         trace.setId(jumpID);
+        trace.setLinkpoints(point);
+        trace.setLabel(label);
+        if(JKTree.get(jkID).getType().equals("Pgon")){
+           trace.addPgon();
+        }
+        else if(JKTree.get(jkID).getType().equals("Hgon")){
+           trace.setShape(drawHgon());
+        }
+
+        Shape shape=trace.getShape();
+        shape.setFill(Color.WHITE);
+        shape.setStroke(Color.RED);
+        JKTree.get(jkID).getShape().setStroke(Color.RED);
         shape.setId(Integer.toString(jumpID));
         trace.setShape(shape);
-        trace.setLabel(label);
-        trace.setLinkpoints(point);
         trace.setTeacherID(jkID);
         addDragFunction(shape,label);
         runRoot.getChildren().add(shape);
         runRoot.getChildren().add(label);
-        runRoot.getChildren().add(trace.executeLabel);
-        runRoot.getChildren().add(trace.getIdLabel());
+
         JKTree.get(jkID).getShape().setStroke(Color.RED);
         jumpTree.get(jumpID).getShape().setStroke(Color.RED);
         JKTree.get(jkID).setStuID(jumpID);
@@ -432,22 +421,22 @@ public class RunController {
 
     }
 
-    public Shape drawPgon(){
-        double x=point.getX();
-        double y=point.getY();
-        Polygon p=new Polygon();
-        p.getPoints().addAll(new Double[]{
-                x, y,
-                x + 10, y - 10,
-                x + 100, y - 10,
-                x + 100, y + 10,
-                x + 10, y + 10
-        });
-        p.setFill(Color.WHITE);
-        p.setStroke(Color.RED);
-        JKTree.get(jkID).getShape().setStroke(Color.RED);
-        return p;
-    }
+//    public Shape drawPgon(){
+//        double x=point.getX();
+//        double y=point.getY();
+//        Polygon p=new Polygon();
+//        p.getPoints().addAll(new Double[]{
+//                x, y,
+//                x + 10, y - 10,
+//                x + 100, y - 10,
+//                x + 100, y + 10,
+//                x + 10, y + 10
+//        });
+//        p.setFill(Color.WHITE);
+//        p.setStroke(Color.RED);
+//        JKTree.get(jkID).getShape().setStroke(Color.RED);
+//        return p;
+//    }
 
     public Link buildLink(Point a,Point b){
         Line line=new Line(a.getX(),a.getY(),b.getX(),b.getY());
@@ -496,14 +485,11 @@ public class RunController {
         p.getPoints().addAll(new Double[]{
                 x, y,
                 x + 10, y - 10,
-                x + 100, y - 10,
-                x+110,y,
-                x + 100, y + 10,
+                x + 70, y - 10,
+                x+80,y,
+                x + 70, y + 10,
                 x + 10, y + 10
         });
-        p.setFill(Color.WHITE);
-        p.setStroke(Color.RED);
-        JKTree.get(jkID).getShape().setStroke(Color.RED);
         return p;
     }
 
@@ -558,6 +544,7 @@ public class RunController {
             }
             String key=jumpLink.bindings.get(0).getBindKey().getText();
             jumpLink.bindings.get(0).getBindKey().setText(key+"->"+value);
+            jumpLink.bindings.get(0).setEllipseRX();
             trace.bindTable.put(key,value);
         }
         else{
@@ -566,6 +553,8 @@ public class RunController {
             String key2=jumpLink.bindings.get(1).getBindKey().getText();
             jumpLink.bindings.get(0).getBindKey().setText(key1+"->"+val[0]);
             jumpLink.bindings.get(1).getBindKey().setText(key2+"->"+val[1]);
+            jumpLink.bindings.get(0).setEllipseRX();
+            jumpLink.bindings.get(1).setEllipseRX();
             jumpTree.get(jumpID).bindTable.put(key1,val[0]);
             jumpTree.get(jumpID).bindTable.put(key2,val[1]);
         }

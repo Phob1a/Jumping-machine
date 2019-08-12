@@ -244,45 +244,40 @@ public class BuildController {
 
     public void drawTrace(){
         String text=inputField.getText();
-        Polygon p = new Polygon();
-        double x=0.0,y=10.0;
-        if(drawType.equals("Pgon")){
-            p.getPoints().addAll(new Double[]{
-                    x, y,
-                    x + 10, y - 10,
-                    x + 130, y - 10,
-                    x + 130, y + 10,
-                    x + 10, y + 10
-            });
-        }
-        else{
-            p.getPoints().addAll(new Double[]{
-                    x, y,
-                    x + 10, y - 10,
-                    x + 130, y - 10,
-                    x+140,y,
-                    x + 130, y + 10,
-                    x + 10, y + 10
-            });
-        }
         int id=JKTree.size();
         JKTrace trace=new JKTrace(drawType,text);
         JKTree.add(trace);
+        trace.setId(id);
+        Label l = new Label(text);
+        double x=0.0,y=10.0;
+        trace.linkpoints.add(new Point(x,y,id));
+        l.setLayoutX(x + 15);
+        l.setLayoutY(y - 5);
+        trace.setLabel(l);
+        if(drawType.equals("Pgon")){
+            trace.addPgon();
+        }
+        else{
+            Polygon p=new Polygon();
+            p.getPoints().addAll(new Double[]{
+                    x, y,
+                    x + 10, y - 10,
+                    x + 70, y - 10,
+                    x+80,y,
+                    x + 70, y + 10,
+                    x + 10, y + 10
+            });
+            trace.setShape(p);
+        }
+        Shape p=trace.getShape();
         p.setFill(Color.WHITE);
         p.setStroke(Color.BLACK);
         p.setId(Integer.toString(id));
-        trace.setId(id);
-        Label l = new Label(text);
-        l.setLayoutX(x + 15);
-        l.setLayoutY(y - 5);
-        trace.setShape(p);
-        trace.setLabel(l);
-        trace.linkpoints.add(new Point(x,y,id));
         if(trace.getType().equals("Pgon")){
             trace.linkpoints.add(new Point(x+60,y,id));
         }
         else{
-            trace.linkpoints.add(new Point(x+140,y,id));
+            trace.linkpoints.add(new Point(x+80,y,id));
         }
         addDragFunction(p,l);
         root.getChildren().add(p);
@@ -385,23 +380,25 @@ public class BuildController {
                     JKTree.add(trace);
                     int id=JKTree.size()-1;
                     trace.setId(id);
-                    Polygon p = new Polygon();
-                    p.getPoints().addAll(new Double[]{
-                            x, y,
-                            x + 10, y - 10,
-                            x + 100, y - 10,
-                            x + 100, y + 10,
-                            x + 10, y + 10
-                    });
+                    trace.linkpoints.add(new Point(x,y,id));
+                    trace.addPgon();
+                    Shape p=trace.getShape();
+//                    Polygon p = new Polygon();
+//                    p.getPoints().addAll(new Double[]{
+//                            x, y,
+//                            x + 10, y - 10,
+//                            x + 100, y - 10,
+//                            x + 100, y + 10,
+//                            x + 10, y + 10
+//                    });
                     p.setFill(Color.WHITE);
                     p.setStroke(Color.BLACK);
                     p.setId(Integer.toString(id));
                     Label l = new Label(tag);
-                    l.setLayoutX(x + 15);
+                    l.setLayoutX(x + 10);
                     l.setLayoutY(y - 5);
                     trace.setShape(p);
                     trace.setLabel(l);
-                    trace.linkpoints.add(new Point(x,y,id));
                     trace.linkpoints.add(new Point(x+55,y,id));
                     addDragFunction(p,l);
                     root.getChildren().add(p);

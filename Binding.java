@@ -27,4 +27,10 @@ public class Binding {
     public void setBindKey(Label bindKey) {
         this.bindKey = bindKey;
     }
+
+    public void setEllipseRX(){
+        double len=this.getBindKey().getText().length()*4.0;
+        this.getEllipse().setRadiusX(len+20);
+        this.getBindKey().setLayoutX(this.getEllipse().getCenterX()-len);
+    }
 }

@@ -10,6 +10,6 @@
       <Button fx:id="nextBtn" layoutX="468.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#codeExecute" text="Next" />
       <Label fx:id="showStep" layoutX="29.0" layoutY="20.0" />
       <Label fx:id="showStack" layoutX="180.0" layoutY="12.0" text="stack:   nil" />
-      <ListView fx:id="bindView" layoutX="986.0" prefHeight="248.0" prefWidth="200.0" />
+      <ListView fx:id="bindView" layoutX="700.0" prefHeight="208.0" prefWidth="200.0" />
    </children>
 </Pane>
