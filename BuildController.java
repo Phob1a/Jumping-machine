@@ -19,7 +19,7 @@ import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import org.omg.CORBA.TRANSIENT;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class BuildController {
@@ -666,6 +666,219 @@ public class BuildController {
                 ed.setX(-1.0);
                 ed.setY(-1.0);
             }
+        }
+    }
+
+    public void saveToFile(MouseEvent event){
+        String filename="test1";
+        File file=new File(filename);
+        if(!file.exists()){
+            try{
+                file.createNewFile();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+//        tagInput=new TextField();
+//        //tagInput.setText("Please input the file name:");
+//        root.getChildren().add(tagInput);
+//        tagInput.setOnKeyPressed(new EventHandler<KeyEvent>() {
+//            @Override
+//            public void handle(KeyEvent event) {
+//                if(event.getCode().equals(KeyCode.ENTER)){
+//                    if(!tagInput.getText().isEmpty()){
+//
+//
+//                    }
+//                }
+//            }
+//        });
+        try{
+            BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+            bw.write(JKTree.size()+"\n");
+            for(JKTrace trace:JKTree){
+                bw.write(trace.getText()+"\n"+trace.linkpoints.get(0).getX()+" "+trace.linkpoints.get(0).getY()+"\n");
+
+            }
+            for(JKTrace trace:JKTree){
+                int id=trace.getId();
+                for(Link link:trace.linkpoints.get(0).links){
+                    if((link.getTraceID1()==id&&link.getTraceID2()>id)||(link.getTraceID2()==id&&link.getTraceID1()>id)){
+                        bw.write(link.getTraceID1()+" "+link.getTraceID2()+" "+link.getP1().getX()+" "+link.getP1().getY()+" "+link.getP2().getX()+" "+link.getP2().getY()+"\n");
+                        if(link.getTag().getText().isEmpty()){
+                            bw.write("0\n");
+
+                        }
+                        else{
+                            bw.write("1\n");
+                            bw.write(link.getTag().getText()+"\n");
+                        }
+                        bw.write(Integer.toString(link.bindings.size()));
+                        bw.write("\n");
+                        for(Binding b:link.bindings){
+                            bw.write(b.getBindKey().getText()+"\n");
+                        }
+                    }
+                }
+
+            }
+            bw.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void readFromFile(MouseEvent event){
+
+        JKTree.clear();
+        String filename="test1";
+        File file=new File(filename);
+
+        try{
+            BufferedReader br=new BufferedReader(new FileReader(file));
+            int n=Integer.parseInt(br.readLine());
+            for(int i=0;i<n;i++) {
+                String text= br.readLine();
+                int id = i;
+                String[] rdLine=br.readLine().split(" ");
+                double x = Double.parseDouble(rdLine[0]);
+                double y = Double.parseDouble(rdLine[1]);
+                String type = text.equals("to") ? "Hgon" : "Pgon";
+                JKTrace trace = new JKTrace(type, text);
+                trace.setId(id);
+                JKTree.add(trace);
+                Label l = new Label(text);
+                trace.linkpoints.add(new Point(x, y, id));
+                l.setLayoutX(x + 15);
+                l.setLayoutY(y - 5);
+                trace.setLabel(l);
+                if (!type.equals("to")) {
+                    trace.addPgon();
+                } else {
+                    Polygon p = new Polygon();
+                    p.getPoints().addAll(new Double[]{
+                            x, y,
+                            x + 10, y - 10,
+                            x + 70, y - 10,
+                            x + 80, y,
+                            x + 70, y + 10,
+                            x + 10, y + 10
+                    });
+                    trace.setShape(p);
+                }
+                Shape p = trace.getShape();
+                p.setFill(Color.WHITE);
+                p.setStroke(Color.BLACK);
+                p.setId(Integer.toString(id));
+
+                if (trace.getType().equals("Pgon")) {
+                    //trace.linkpoints.add(new Point(x+60,y,id));
+                } else {
+                    trace.linkpoints.add(new Point(x + 80, y, id));
+                }
+                addDragFunction(p, l);
+                root.getChildren().add(p);
+                root.getChildren().add(l);
+                inputField.clear();
+                p.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (event.getButton().equals(MouseButton.SECONDARY)) {
+                            int id = Integer.parseInt(p.getId());
+                            JKTrace trace = JKTree.get(id);
+                            double x = p.getLayoutX();
+                            double y = p.getLayoutY();
+                            tagInput = new TextField();
+                            tagInput.setLayoutX(x);
+                            tagInput.setLayoutY(y);
+                            p.setStroke(Color.RED);
+                            root.getChildren().add(tagInput);
+
+                            tagInput.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                                @Override
+                                public void handle(KeyEvent event) {
+                                    if (event.getCode().equals(KeyCode.ENTER)) {
+                                        String text = tagInput.getText();
+                                        trace.setText(text);
+                                        trace.getLabel().setText(text);
+                                        p.setStroke(Color.BLACK);
+                                        checkStart();
+                                        tagInput.clear();
+                                        root.getChildren().remove(tagInput);
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                });
+            }
+                String readString;
+                String[] rdLine;
+                while((readString=br.readLine())!=null){
+                    rdLine=readString.split(" ");
+                    int id1,id2;
+                    double x1,x2,y1,y2;
+                    id1=Integer.parseInt(rdLine[0]);
+                    id2=Integer.parseInt(rdLine[1]);
+                    Point p1=new Point();
+                    Point p2=new Point();
+                    x1=Double.parseDouble(rdLine[2]);
+                    y1=Double.parseDouble(rdLine[3]);
+                    x2=Double.parseDouble(rdLine[4]);
+                    y2=Double.parseDouble(rdLine[5]);
+
+                    for(Point point:JKTree.get(id1).linkpoints){
+                        if(point.getX()==x1&&point.getY()==y1){
+                            p1=point;
+                            break;
+                        }
+                    }
+                    for(Point point:JKTree.get(id2).linkpoints){
+                        if(point.getX()==x2&&point.getY()==y2){
+                            p2=point;
+                            break;
+                        }
+                    }
+                    Line line=new Line(p1.getX(),p1.getY(),p2.getX(),p2.getY());
+                    line.setStroke(Color.BLACK);
+                    Link link=new Link(line,p1,p2);
+                    p1.links.add(link);
+                    p2.links.add(link);
+                    root.getChildren().add(line);
+                    addTagFunction(link);
+                    int tagNo=Integer.parseInt(br.readLine());
+                    if(tagNo==1){
+                        link.setTag(new Label());
+                        link.getTag().setText(br.readLine());
+                        double fx=link.getP1().getX()+(link.getP2().getX()-link.getP1().getX())*0.15;
+                        double fy=link.getP1().getY()+(link.getP2().getY()-link.getP1().getY())*0.15;
+                        link.getTag().setLayoutX(fx);
+                        link.getTag().setLayoutY(fy);
+                        root.getChildren().add(link.getTag());
+                    }
+                    int bdNo=Integer.parseInt(br.readLine());
+                    for(int i=0;i<bdNo;i++){
+                        String bd=br.readLine();
+                        Label label=new Label(bd);
+                        Ellipse e=new Ellipse(0,0,50,10);
+                        e.setFill(Color.WHITE);
+                        e.setStroke(Color.BLACK);
+                        Binding binding=new Binding(e,label);
+                        link.bindings.add(binding);
+                        link.locateBindings();
+                        root.getChildren().add(e);
+                        root.getChildren().add(label);
+                    }
+                    link.locateBindings();
+
+                }
+                checkStart();
+        }
+        catch (IOException e){
+            e.printStackTrace();
         }
     }
 }
