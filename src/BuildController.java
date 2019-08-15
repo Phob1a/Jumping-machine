@@ -702,25 +702,25 @@ public class BuildController {
             }
             for(JKTrace trace:JKTree){
                 int id=trace.getId();
-                for(Link link:trace.linkpoints.get(0).links){
-                    if((link.getTraceID1()==id&&link.getTraceID2()>id)||(link.getTraceID2()==id&&link.getTraceID1()>id)){
-                        bw.write(link.getTraceID1()+" "+link.getTraceID2()+" "+link.getP1().getX()+" "+link.getP1().getY()+" "+link.getP2().getX()+" "+link.getP2().getY()+"\n");
-                        if(link.getTag().getText().isEmpty()){
-                            bw.write("0\n");
+                for(int t=0;t<2;t++) {
+                    for (Link link : trace.linkpoints.get(t).links) {
+                        if ((link.getTraceID1() == id && link.getTraceID2() > id) || (link.getTraceID2() == id && link.getTraceID1() > id)) {
+                            bw.write(link.getTraceID1() + " " + link.getTraceID2() + " " + link.getP1().getX() + " " + link.getP1().getY() + " " + link.getP2().getX() + " " + link.getP2().getY() + "\n");
+                            if (link.getTag().getText().isEmpty()) {
+                                bw.write("0\n");
 
-                        }
-                        else{
-                            bw.write("1\n");
-                            bw.write(link.getTag().getText()+"\n");
-                        }
-                        bw.write(Integer.toString(link.bindings.size()));
-                        bw.write("\n");
-                        for(Binding b:link.bindings){
-                            bw.write(b.getBindKey().getText()+"\n");
+                            } else {
+                                bw.write("1\n");
+                                bw.write(link.getTag().getText() + "\n");
+                            }
+                            bw.write(Integer.toString(link.bindings.size()));
+                            bw.write("\n");
+                            for (Binding b : link.bindings) {
+                                bw.write(b.getBindKey().getText() + "\n");
+                            }
                         }
                     }
                 }
-
             }
             bw.close();
         }
@@ -753,7 +753,7 @@ public class BuildController {
                 l.setLayoutX(x + 15);
                 l.setLayoutY(y - 5);
                 trace.setLabel(l);
-                if (!type.equals("to")) {
+                if (!type.equals("Hgon")) {
                     trace.addPgon();
                 } else {
                     Polygon p = new Polygon();

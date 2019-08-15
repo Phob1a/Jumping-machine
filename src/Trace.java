@@ -94,7 +94,7 @@ public class Trace {
         });
         this.setShape(p);
         if(this.linkpoints.size()==1){
-            this.linkpoints.add(new Point((x+len+60)*0.5,y,this.getId()));
+            this.linkpoints.add(new Point(x+(len+60)*0.5,y,this.getId()));
         }
     }
 }
