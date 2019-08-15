@@ -17,7 +17,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
-import org.omg.CORBA.TRANSIENT;
 
 import java.io.*;
 import java.util.ArrayList;
