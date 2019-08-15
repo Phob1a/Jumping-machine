@@ -716,9 +716,17 @@ public class RunController {
                         if(link.getTraceID1()==id){
                             link.getLine().setStartX(link.getLine().getStartX()+x);
                             link.getLine().setStartY(link.getLine().getStartY()+y);
-                            moveShape(link.getTraceID2(),x,y);
+                            if(!link.getLine().getStroke().equals(Color.RED))
+                                moveShape(link.getTraceID2(), x, y);
+                            else {
+                                link.getLine().setEndX(link.getLine().getEndX() + x);
+                                link.getLine().setEndY(link.getLine().getEndY() + y);
+                                link.getP2().setX(link.getP2().getX()+x);
+                                link.getP2().setY(link.getP2().getY()+y);
+                            }
                         }
                         else{
+
                             link.getLine().setEndX(link.getLine().getEndX()+x);
                             link.getLine().setEndY(link.getLine().getEndY()+y);
 

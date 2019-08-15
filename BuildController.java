@@ -273,8 +273,9 @@ public class BuildController {
         p.setFill(Color.WHITE);
         p.setStroke(Color.BLACK);
         p.setId(Integer.toString(id));
+
         if(trace.getType().equals("Pgon")){
-            trace.linkpoints.add(new Point(x+60,y,id));
+            //trace.linkpoints.add(new Point(x+60,y,id));
         }
         else{
             trace.linkpoints.add(new Point(x+80,y,id));
@@ -283,6 +284,38 @@ public class BuildController {
         root.getChildren().add(p);
         root.getChildren().add(l);
         inputField.clear();
+        p.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getButton().equals(MouseButton.SECONDARY)) {
+                int id = Integer.parseInt(p.getId());
+                JKTrace trace = JKTree.get(id);
+                double x = p.getLayoutX();
+                double y = p.getLayoutY();
+                tagInput=new TextField();
+                tagInput.setLayoutX(x);
+                tagInput.setLayoutY(y);
+                p.setStroke(Color.RED);
+                root.getChildren().add(tagInput);
+
+                tagInput.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        if(event.getCode().equals(KeyCode.ENTER)){
+                            String text=tagInput.getText();
+                            trace.setText(text);
+                            trace.getLabel().setText(text);
+                            p.setStroke(Color.BLACK);
+                            checkStart();
+                            tagInput.clear();
+                            root.getChildren().remove(tagInput);
+                        }
+                    }
+                });
+            }
+
+             }
+        });
     }
 
 
@@ -305,7 +338,10 @@ public class BuildController {
                     public void handle(KeyEvent event) {
                         if(event.getCode()==KeyCode.ENTER){
                         String text=tagInput.getText();
-                        if(text.charAt(0)=='#') {
+                        if(text.isEmpty()){
+
+                        }
+                        else if(text.charAt(0)=='#') {
                             if(link.getTag().getText().isEmpty()) {
                                 double fx=link.getP1().getX()+(link.getP2().getX()-link.getP1().getX())*0.15;
                                 double fy=link.getP1().getY()+(link.getP2().getY()-link.getP1().getY())*0.15;
@@ -344,16 +380,16 @@ public class BuildController {
     }
 
 
-    public void addEllipse(Link link,String text){
-        Line line=link.getLine();
-        int bindID=link.bindings.size();
-        double x=line.getStartX()+(line.getEndX()-line.getStartX())*1.0*bindID/3;
-        double y=line.getStartY()+(line.getEndY()-line.getStartY())*1.0*bindID/3;
-        Ellipse e=new Ellipse(x,y,50.0,10.0);
-        e.setFill(Color.WHITE);
-        e.setStroke(Color.BLACK);
-
-    }
+//    public void addEllipse(Link link,String text){
+//        Line line=link.getLine();
+//        int bindID=link.bindings.size();
+//        double x=line.getStartX()+(line.getEndX()-line.getStartX())*1.0*bindID/3;
+//        double y=line.getStartY()+(line.getEndY()-line.getStartY())*1.0*bindID/3;
+//        Ellipse e=new Ellipse(x,y,50.0,10.0);
+//        e.setFill(Color.WHITE);
+//        e.setStroke(Color.BLACK);
+//
+//    }
 
 
 //    public void getInput(MouseEvent event){
@@ -577,11 +613,21 @@ public class BuildController {
             Scene scene = new Scene(runRoot);
             stage.setScene(scene);
             stage.showAndWait();
+            resetJKTree();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
+    }
+
+    private void resetJKTree() {
+        for(JKTrace trace:JKTree){
+            trace.getLabel().setTextFill(Color.BLACK);
+            trace.getShape().setStroke(Color.BLACK);
+            trace.getShape().setFill(Color.WHITE);
+            checkStart();
+        }
     }
 
     private void checkStart(){
