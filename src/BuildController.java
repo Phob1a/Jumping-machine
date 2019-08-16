@@ -28,6 +28,7 @@ public class BuildController {
     private boolean pressed;
     private boolean selected=false;
     private boolean deletePressed;
+    private String fileFlag="Save";
     double fy=900.0;
     public int id;
     int startID=-1;
@@ -90,6 +91,9 @@ public class BuildController {
 
     @FXML
     private TextField tagInput;
+
+    @FXML
+    private TextField fileInput;
 
 
 
@@ -668,11 +672,10 @@ public class BuildController {
         }
     }
 
-    public void saveToFile(MouseEvent event){
+    public void saveToFile(String filename){
 
-        FileMsgBoxController.display("Please input the file path: ");
+       // FileMsgBoxController.display("Please input the file path: ");
 
-        String filename="test1";
         File file=new File(filename);
         if(!file.exists()){
             try{
@@ -732,10 +735,9 @@ public class BuildController {
         }
     }
 
-    public void readFromFile(MouseEvent event){
+    public void readFromFile(String filename){
 
         JKTree.clear();
-        String filename="test1";
         File file=new File(filename);
 
         try{
@@ -882,5 +884,37 @@ public class BuildController {
         catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void getFileName(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            if(fileInput.getText().isEmpty())  return;
+            String filename=fileInput.getText();
+            fileInput.clear();
+            fileInput.setDisable(true);
+            fileInput.setVisible(false);
+            fileHandle(filename,fileFlag);
+        }
+    }
+
+    private void fileHandle(String filename, String fileFlag) {
+        if(fileFlag.equals("Save")){
+            saveToFile(filename);
+        }
+        else{
+            readFromFile(filename);
+        }
+    }
+
+    public void setFileSaving(MouseEvent event){
+        fileInput.setDisable(false);
+        fileInput.setVisible(true);
+        fileFlag="Save";
+    }
+
+    public void setFileReading(MouseEvent event){
+        fileInput.setDisable(false);
+        fileInput.setVisible(true);
+        fileFlag="Read";
     }
 }

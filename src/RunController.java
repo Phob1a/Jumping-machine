@@ -374,7 +374,7 @@ public class RunController {
         JKTree.get(jkID).getShape().setStroke(Color.RED);
         jumpTree.get(jumpID).getShape().setStroke(Color.RED);
         JKTree.get(jkID).setStuID(jumpID);
-        if(trace.getId()!=startID){
+        if(trace.getTeacherID()!=startID){
             trace.setFatherid(oldJumpID);
             trace.updateBindTable(jumpTree.get(oldJumpID));
             trace.updateLink(jumpTree.get(oldJumpID));

@@ -75,8 +75,9 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Rectangle fx:id="SaveBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutY="379.0" onMouseClicked="#saveToFile" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
-            <Rectangle fx:id="readBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutX="-1.0" layoutY="404.0" onMouseClicked="#readFromFile" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
+            <Rectangle fx:id="SaveBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutY="379.0" onMouseClicked="#setFileSaving" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
+            <Rectangle fx:id="readBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutX="-1.0" layoutY="404.0" onMouseClicked="#setFileReading" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
+            <TextField fx:id="fileInput" disable="true" layoutX="9.0" layoutY="432.0" onKeyPressed="#getFileName" prefHeight="27.0" prefWidth="137.0" visible="false" />
 
          </children>
       </Pane>
