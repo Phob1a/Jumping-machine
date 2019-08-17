@@ -4,12 +4,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <Pane fx:id="runRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RunController">
    <children>
-      <Button fx:id="nextBtn" layoutX="468.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#codeExecute" text="Next" />
-      <Label fx:id="showStep" layoutX="29.0" layoutY="20.0" />
-      <Label fx:id="showStack" layoutX="180.0" layoutY="12.0" text="stack:   nil" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#950821" height="98.0" layoutX="-5.0" stroke="BLACK" strokeType="INSIDE" width="705.0" />
+      <Button fx:id="nextBtn" layoutX="324.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#codeExecute" style="-fx-background-color: #fcc379;" text="Next" textFill="WHITE" />
+      <Label fx:id="showStep" layoutX="20.0" layoutY="16.0" textFill="#f5f0cb">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label fx:id="showStack" layoutX="137.0" layoutY="49.0" prefHeight="52.0" prefWidth="370.0" text="nil" textFill="#f5f0cb">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
       <ListView fx:id="bindView" layoutX="700.0" prefHeight="208.0" prefWidth="200.0" />
+      <Line endX="585.0" layoutX="115.0" layoutY="49.0" startX="-111.0" stroke="#fcc379" strokeWidth="6.0" />
+      <Label layoutX="20.0" layoutY="56.0" prefHeight="37.0" prefWidth="71.0" text="Stack:" textFill="#f5f0cb">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Line endX="-37.0" endY="-141.0" layoutX="146.0" layoutY="194.0" startX="-37.0" startY="-96.0" stroke="#fcc379" strokeWidth="3.0" />
    </children>
 </Pane>

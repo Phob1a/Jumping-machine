@@ -33,7 +33,7 @@ public class RunController {
     int jumpID;
     int pressedID=-1;
     String value;
-    Point point=new Point(50.0,50.0);
+    Point point=new Point(120.0,120.0);
 
 
 
@@ -604,7 +604,7 @@ public class RunController {
 
 
     private void updateStackLabel() {
-        String str="stack:  ";
+        String str="";
         for(int i=stack.size()-1;i>=0;i--){
             str+=stack.get(i);
             str+="::";
