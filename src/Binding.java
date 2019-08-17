@@ -29,7 +29,7 @@ public class Binding {
     }
 
     public void setEllipseRX(){
-        double len=this.getBindKey().getText().length()*4.0;
+        double len=this.getBindKey().getText().length()*3.0;
         this.getEllipse().setRadiusX(len+20);
         this.getBindKey().setLayoutX(this.getEllipse().getCenterX()-len);
     }

@@ -236,6 +236,7 @@ public class BuildController {
         //line.setStroke(Color.TRANSPARENT);
         Link link=new Link(line,a,b);
         addTagFunction(link);
+        //addDeleteFunction(link);
         root.getChildren().add(line);
         a.links.add(link);
         b.links.add(link);
@@ -305,13 +306,19 @@ public class BuildController {
                     @Override
                     public void handle(KeyEvent event) {
                         if(event.getCode().equals(KeyCode.ENTER)){
-                            String text=tagInput.getText();
-                            trace.setText(text);
-                            trace.getLabel().setText(text);
-                            p.setStroke(Color.BLACK);
-                            checkStart();
-                            tagInput.clear();
-                            root.getChildren().remove(tagInput);
+                            if(tagInput.getText().isEmpty()){
+                                root.getChildren().remove(tagInput);
+                            }
+                            else {
+                                String text = tagInput.getText();
+                                trace.setText(text);
+                                trace.getLabel().setText(text);
+                                p.setStroke(Color.BLACK);
+                                checkStart();
+                                tagInput.clear();
+                                root.getChildren().remove(tagInput);
+                                //trace.addPgon();
+                            }
                         }
                     }
                 });
@@ -328,59 +335,124 @@ public class BuildController {
 
             @Override
             public void handle(MouseEvent event) {
-                line.setStroke(Color.RED);
-                double x=(line.getStartX()+line.getEndX())*0.5;
-                double y=(line.getStartY()+line.getEndY())*0.5;
-                tagInput=new TextField();
-                tagInput.setLayoutX(x + 5);
-                tagInput.setLayoutY(y + 5);
-                root.getChildren().add(tagInput);
+                if (event.getButton().equals(MouseButton.PRIMARY)) {
+                    line.setStroke(Color.RED);
+                    double x = (line.getStartX() + line.getEndX()) * 0.5;
+                    double y = (line.getStartY() + line.getEndY()) * 0.5;
+                    tagInput = new TextField();
+                    tagInput.setLayoutX(x + 5);
+                    tagInput.setLayoutY(y + 5);
+                    root.getChildren().add(tagInput);
 
-                tagInput.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                    @Override
-                    public void handle(KeyEvent event) {
-                        if(event.getCode()==KeyCode.ENTER){
-                        String text=tagInput.getText();
-                        if(text.isEmpty()){
+                    tagInput.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                        @Override
+                        public void handle(KeyEvent event) {
+                            if (event.getCode() == KeyCode.ENTER) {
+                                String text = tagInput.getText();
+                                if (text.isEmpty()) {
+                                    root.getChildren().remove(tagInput);
+                                } else if (text.charAt(0) == '#') {
+                                    if (link.getTag().getText().isEmpty()) {
+                                        double fx = link.getP1().getX() + (link.getP2().getX() - link.getP1().getX()) * 0.15;
+                                        double fy = link.getP1().getY() + (link.getP2().getY() - link.getP1().getY()) * 0.15;
+                                        link.setTag(new Label(text));
+                                        link.getTag().setLayoutX(fx);
+                                        link.getTag().setLayoutY(fy);
+                                        root.getChildren().add(link.getTag());
+                                    } else {
+                                        link.getTag().setText(text);
+                                    }
+                                } else {
 
+                                    Label label = new Label(text);
+                                    Ellipse e = new Ellipse(0, 0, 50, 10);
+                                    e.setFill(Color.WHITE);
+                                    e.setStroke(Color.BLACK);
+                                    Binding binding = new Binding(e, label);
+                                    if (link.bindings.size() < 2) {
+                                        link.bindings.add(binding);
+                                        link.locateBindings();
+                                        root.getChildren().add(e);
+                                        root.getChildren().add(label);
+                                        e.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                            @Override
+                                            public void handle(MouseEvent event) {
+                                                tagInput=new TextField();
+                                                tagInput.setLayoutX(e.getCenterX());
+                                                tagInput.setLayoutY(e.getCenterY());
+                                                root.getChildren().add(tagInput);
+                                                tagInput.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                                                    @Override
+                                                    public void handle(KeyEvent event) {
+                                                        if(event.getCode().equals(KeyCode.ENTER)){
+                                                            if(!tagInput.getText().isEmpty()){
+                                                                String newKey=tagInput.getText();
+                                                                for(Binding b:link.bindings){
+                                                                    if(b.getEllipse().equals(e)){
+                                                                        b.getBindKey().setText(newKey);
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                tagInput.clear();
+                                                                root.getChildren().remove(tagInput);
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                }
+
+                                tagInput.clear();
+                                root.getChildren().remove(tagInput);
+                                line.setStroke(Color.BLACK);
+                            }
                         }
-                        else if(text.charAt(0)=='#') {
-                            if(link.getTag().getText().isEmpty()) {
-                                double fx=link.getP1().getX()+(link.getP2().getX()-link.getP1().getX())*0.15;
-                                double fy=link.getP1().getY()+(link.getP2().getY()-link.getP1().getY())*0.15;
-                                link.setTag(new Label(text));
-                                link.getTag().setLayoutX(fx);
-                                link.getTag().setLayoutY(fy);
-                                root.getChildren().add(link.getTag());
+                    });
+                }
+                else{
+                    int id1,id2;
+                    id1=link.getTraceID1();
+                    id2=link.getTraceID2();
+                    double x1,x2,y1,y2;
+                    x1=link.getP1().getX();
+                    x2=link.getP2().getX();
+                    y1=link.getP1().getY();
+                    y2=link.getP2().getY();
+                    root.getChildren().remove(line);
+                    JKTrace t1=JKTree.get(id1);
+                    JKTrace t2=JKTree.get(id2);
+                    for(Point p:t1.linkpoints){
+                        for(Link l:p.links){
+                            if(l.equals(link)){
+                                p.links.remove(l);
+                                break;
                             }
-                            else{
-                                link.getTag().setText(text);
-                            }
-                          }
-                        else{
-
-                            Label label=new Label(text);
-                            Ellipse e=new Ellipse(0,0,50,10);
-                            e.setFill(Color.WHITE);
-                            e.setStroke(Color.BLACK);
-                            Binding binding=new Binding(e,label);
-                            if(link.bindings.size()<2) {
-                                link.bindings.add(binding);
-                                link.locateBindings();
-                                root.getChildren().add(e);
-                                root.getChildren().add(label);
-                            }
-                        }
-
-                            tagInput.clear();
-                            root.getChildren().remove(tagInput);
-                            line.setStroke(Color.BLACK);
                         }
                     }
-                });
+                    for(Point p:t2.linkpoints){
+                        for(Link l:p.links){
+                            if(l.equals(link)){
+                                p.links.remove(l);
+                                break;
+                            }
+                        }
+                    }
+                    if(!link.getTag().getText().isEmpty()){
+                        root.getChildren().remove(link.getTag());
+                    }
+                    for(Binding b:link.bindings){
+                        root.getChildren().remove(b.getEllipse());
+                        root.getChildren().remove(b.getBindKey());
+                    }
+                }
             }
         });
     }
+
+
+
 
 
 //    public void addEllipse(Link link,String text){
@@ -729,6 +801,7 @@ public class BuildController {
                 }
             }
             bw.close();
+            MsgBoxController.display("The code tree is successfully saved as "+filename);
         }
         catch (IOException e){
             e.printStackTrace();
@@ -739,7 +812,9 @@ public class BuildController {
 
         JKTree.clear();
         File file=new File(filename);
-
+        if(!file.exists()){
+            MsgBoxController.display("This file does not exist.");
+        }
         try{
             BufferedReader br=new BufferedReader(new FileReader(file));
             int n=Integer.parseInt(br.readLine());

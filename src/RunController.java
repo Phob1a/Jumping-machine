@@ -213,7 +213,7 @@ public class RunController {
 //                if(jumpTree.get(jumpID).bindTable.containsKey(value)) {
 //                    value = jumpTree.get(jumpID).bindTable.get(value);
 //                }
-                MsgBoxController.display(value);
+                MsgBoxController.display("The final return value is: "+value);
                 nextBtn.setDisable(true);
             }
 

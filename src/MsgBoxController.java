@@ -30,7 +30,7 @@ public class MsgBoxController {
             Parent msgRoot = loader.load();
             MsgBoxController controller = loader.getController();
             //controller.setTitle(title);
-            controller.setContext("The final return value is: "+content);
+            controller.setContext(content);
             Scene scene = new Scene(msgRoot);
             stage.setScene(scene);
             stage.showAndWait();
