@@ -10,7 +10,7 @@
    <children>
       <Pane layoutY="49.0" prefHeight="627.0" prefWidth="156.0" style="-fx-background-color: #950821;">
          <children>
-            <TextField fx:id="inputField" layoutX="9.0" layoutY="337.0" onKeyPressed="#addTrace" prefHeight="27.0" prefWidth="137.0" />
+            <TextField fx:id="inputField" layoutX="8.0" layoutY="314.0" onKeyPressed="#addTrace" prefHeight="27.0" prefWidth="137.0" />
             <Label layoutX="46.0" layoutY="30.0" text="force" textFill="#f2e2e2">
                <font>
                   <Font size="18.0" />
@@ -51,7 +51,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="58.0" layoutY="471.0" text="run" textFill="#f2e2e2">
+            <Label layoutX="54.0" layoutY="504.0" text="run" textFill="#f2e2e2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -64,20 +64,26 @@
             <Rectangle fx:id="pushBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutY="133.0" onMouseClicked="#pushPressed" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
             <Rectangle fx:id="popBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutX="-1.0" layoutY="168.0" onMouseClicked="#popPressed" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
             <Rectangle fx:id="printBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutX="-1.0" layoutY="275.0" onMouseClicked="#printPressed" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
-            <Rectangle fx:id="runBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutY="469.0" onMouseClicked="#runBtnPressed" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
-            <Label layoutX="49.0" layoutY="406.0" text="Open" textFill="#f2e2e2">
+            <Rectangle fx:id="runBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutX="-1.0" layoutY="502.0" onMouseClicked="#runBtnPressed" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
+            <Label layoutX="51.0" layoutY="368.0" text="Clear" textFill="#f2e2e2">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="48.0" layoutY="381.0" text="Save" textFill="#f2e2e2">
+            <Label layoutX="49.0" layoutY="434.0" text="Open" textFill="#f2e2e2">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Rectangle fx:id="SaveBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutY="379.0" onMouseClicked="#setFileSaving" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
-            <Rectangle fx:id="readBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutX="-1.0" layoutY="404.0" onMouseClicked="#setFileReading" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
-            <TextField fx:id="fileInput" disable="true" layoutX="9.0" layoutY="432.0" onKeyPressed="#getFileName" prefHeight="27.0" prefWidth="137.0" visible="false" />
+            <Label layoutX="47.0" layoutY="406.0" text="Save" textFill="#f2e2e2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Rectangle fx:id="SaveBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutX="-1.0" layoutY="404.0" onMouseClicked="#setFileSaving" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
+            <Rectangle fx:id="readBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutY="432.0" onMouseClicked="#setFileReading" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
+            <TextField fx:id="fileInput" disable="true" layoutX="6.0" layoutY="459.0" onKeyPressed="#getFileName" prefHeight="27.0" prefWidth="137.0" visible="false" />
+            <Rectangle fx:id="clearBtn" arcHeight="5.0" arcWidth="5.0" fill="#c79d9580" height="27.0" layoutY="366.0" onMouseClicked="#clearScreen" stroke="#b0999900" strokeType="INSIDE" width="156.0" />
 
          </children>
       </Pane>

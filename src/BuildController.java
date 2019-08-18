@@ -810,6 +810,9 @@ public class BuildController {
 
     public void readFromFile(String filename){
 
+        for(JKTrace trace:JKTree){
+            removeAll(trace);
+        }
         JKTree.clear();
         File file=new File(filename);
         if(!file.exists()){
@@ -991,5 +994,28 @@ public class BuildController {
         fileInput.setDisable(false);
         fileInput.setVisible(true);
         fileFlag="Read";
+    }
+
+    public void removeAll(JKTrace trace){
+        root.getChildren().remove(trace.getShape());
+        root.getChildren().remove(trace.getLabel());
+        for(Point p:trace.linkpoints){
+            for(Link l:p.links){
+                root.getChildren().remove(l.getLine());
+                if(!l.getTag().getText().isEmpty())
+                    root.getChildren().remove(l.getTag());
+                for(Binding b:l.bindings){
+                    root.getChildren().remove(b.getBindKey());
+                    root.getChildren().remove(b.getEllipse());
+                }
+            }
+        }
+    }
+
+    public void clearScreen(MouseEvent event){
+        for(JKTrace trace:JKTree){
+            removeAll(trace);
+        }
+        JKTree.clear();
     }
 }
