@@ -13,6 +13,8 @@ public class Main extends Application {
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
         //primaryStage.setResizable(false);
         primaryStage.setScene(scene);
+        primaryStage.setX(0);
+        primaryStage.setY(0);
         primaryStage.show();
     }
 

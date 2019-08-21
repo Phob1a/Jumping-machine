@@ -11,7 +11,7 @@
 <Pane fx:id="runRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RunController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#950821" height="98.0" layoutX="-5.0" stroke="BLACK" strokeType="INSIDE" width="705.0" />
-      <Button fx:id="nextBtn" layoutX="324.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#codeExecute" style="-fx-background-color: #fcc379;" text="Next" textFill="WHITE" />
+      <Button fx:id="nextBtn" layoutX="324.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#nextState" style="-fx-background-color: #fcc379;" text="Next" textFill="WHITE" />
       <Label fx:id="showStep" layoutX="20.0" layoutY="16.0" textFill="#f5f0cb">
          <font>
             <Font size="20.0" />

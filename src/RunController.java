@@ -25,6 +25,7 @@ import java.util.Stack;
 public class RunController {
 
     ArrayList<JKTrace>JKTree;
+    int stateID=0;
     int startID;
     int cycle;
     int step;
@@ -41,6 +42,7 @@ public class RunController {
     HashMap<String,Integer> jumpingPoint=new HashMap<>();
     HashMap<String,Integer> hgonTable=new HashMap<>();
     Stack<String> stack=new Stack<>();
+    ArrayList<Recording>recordings=new ArrayList<>();
 
     @FXML
     private Pane runRoot;
@@ -54,11 +56,214 @@ public class RunController {
     @FXML
     private Button nextBtn;
 
-
-
-
     @FXML
     private ListView<String>bindView=new ListView<>();
+
+
+    public class Recording{
+        int jumpID;
+        int cycle;
+        int nextJkID;
+        String text;
+
+        public int getNextJkID() {
+            return nextJkID;
+        }
+
+        public void setNextJkID(int nextJkID) {
+            this.nextJkID = nextJkID;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        String phase;
+        String stackPop;
+        String stackPush;
+        String addPt;
+        String addHgon;
+        Link link;
+
+        public Recording(int jumpID){
+            this.jumpID=jumpID;
+        }
+
+        public int getJumpID() {
+            return jumpID;
+        }
+
+        public void setJumpID(int jumpID) {
+            this.jumpID = jumpID;
+        }
+
+        public int getCycle() {
+            return cycle;
+        }
+
+        public void setCycle(int cycle) {
+            this.cycle = cycle;
+        }
+
+
+        public Link getLink() {
+            return link;
+        }
+
+        public void setLink(Link link) {
+            this.link = link;
+        }
+
+        public String getPhase() {
+            return phase;
+        }
+
+        public void setPhase(String phase) {
+            this.phase = phase;
+        }
+
+        public String getStackPop() {
+            return stackPop;
+        }
+
+        public void setStackPop(String stackPop) {
+            this.stackPop = stackPop;
+        }
+
+        public String getStackPush() {
+            return stackPush;
+        }
+
+        public void setStackPush(String stackPush) {
+            this.stackPush = stackPush;
+        }
+
+        public String getAddPt() {
+            return addPt;
+        }
+
+        public void setAddPt(String addPt) {
+            this.addPt = addPt;
+        }
+
+        public String getAddHgon() {
+            return addHgon;
+        }
+
+        public void setAddHgon(String addHgon) {
+            this.addHgon = addHgon;
+        }
+
+        public void trackBack(){
+            stateID--;
+            Recording rec=recordings.get(stateID);
+            updateCycleInfo();
+            jumpID=rec.getJumpID();
+            JumpTrace trace=jumpTree.get(jumpID);
+            jkID=trace.getTeacherID();
+            if(this.phase.equals("fetch")){
+                trace.getShape().setVisible(false);
+                trace.getLabel().setVisible(false);
+                rec.getLink().getLine().setStroke(Color.RED);
+                rec.getLink().getCorrespondJKLink().getLine().setStroke(Color.RED);
+                jkID=rec.getNextJkID();
+            }
+            else if(this.phase.equals("decode")){
+                if(!this.addPt.isEmpty()){
+                    jumpingPoint.remove(this.addPt);
+                }
+                trace.getLabel().setText(rec.getText());
+            }
+            else{
+                trace.getShape().setStroke(Color.RED);
+                JKTree.get(jkID).getShape().setStroke(Color.RED);
+                this.getLink().getLine().setVisible(false);
+                if(!stackPop.isEmpty()){
+                    stack.push(stackPop);
+                }
+                if(!stackPush.isEmpty()){
+                    stack.pop();
+                }
+                if(!addHgon.isEmpty()){
+                    hgonTable.remove(addHgon);
+                }
+                if(!this.getLink().getTag().getText().isEmpty()){
+                    this.getLink().getTag().setVisible(false);
+                }
+                for(Binding b:this.getLink().bindings){
+                    b.getBindKey().setVisible(false);
+                    b.getEllipse().setVisible(false);
+                }
+                jkID=rec.nextJkID;
+            }
+        }
+
+        public void trackForward(){
+            stateID++;
+            Recording rec=recordings.get(stateID);
+            updateCycleInfo();
+            jumpID=rec.getJumpID();
+
+            JumpTrace trace=jumpTree.get(jumpID);
+            jkID=trace.getTeacherID();
+            if(this.phase.equals("fetch")){
+                if(rec.addPt!=null){
+                    trace.getLabel().setText(rec.text);
+                    jumpingPoint.put(addPt,jumpID);
+                }
+            }
+            else if(this.phase.equals("decode")){
+                rec.getLink().getLine().setVisible(true);
+                trace.getShape().setStroke(Color.BLACK);
+                JKTree.get(jkID).getShape().setStroke(Color.BLACK);
+                rec.getLink().getLine().setStroke(Color.RED);
+                rec.getLink().getCorrespondJKLink().getLine().setStroke(Color.RED);
+                if(!stackPop.isEmpty()){
+                    stack.pop();
+                }
+                if(!stackPush.isEmpty()){
+                    stack.push(stackPush);
+                }
+                if(!addHgon.isEmpty()){
+                    hgonTable.put(addHgon,jumpID);
+                }
+                if(!rec.getLink().getTag().getText().isEmpty()){
+                    rec.getLink().getTag().setVisible(true);
+                }
+                for(Binding b:rec.getLink().bindings){
+                    b.getBindKey().setVisible(true);
+                    b.getEllipse().setVisible(true);
+                }
+                jkID=rec.nextJkID;
+            }
+            else{
+                this.link.getLine().setStroke(Color.BLACK);
+                trace.getShape().setVisible(true);
+                trace.getLabel().setVisible(true);
+                trace.getLabel().setText(rec.getText());
+                trace.getShape().setStroke(Color.RED);
+                JKTree.get(jkID).getShape().setStroke(Color.RED);
+                jkID=rec.nextJkID;
+            }
+        }
+
+    }
+
+    public void updateCycleInfo(){
+        cycle=stateID/3;
+        String[] ph={"fetch","decode","execute"};
+        showCycle(ph[stateID%3]);
+    }
+
+    public void recordState(){
+        Recording rec=new Recording(jumpID);
+        recordings.add(rec);
+        rec.nextJkID=jkID;
+    }
 
     public void fetch(){
         showCycle("fetch");
@@ -162,9 +367,6 @@ public class RunController {
             int newJkID=findNextJkTrace(oldLink);
             JKTree.get(newJkID).setFatherid(jkID);
             jkID=newJkID;
-            if(JKTree.get(jkID).getType().equals("Ellipse")){
-               // binding();
-            }
         }
         else if (code.substring(0, 5).equals("force")) {
             String key=code.split(" ")[1];
@@ -502,8 +704,12 @@ public class RunController {
         return e;
     }
 
+    public void nextState(){
+        codeExecute();
+    }
 
-    public void codeExecute(MouseEvent event){
+
+    public void codeExecute(){
         switch (step){
             case 0:{
                 fetch();

@@ -687,6 +687,8 @@ public class BuildController {
             // controller.setContext(content);
             Scene scene = new Scene(runRoot);
             stage.setScene(scene);
+            stage.setX(900.0);
+            stage.setY(40.0);
             stage.showAndWait();
             resetJKTree();
         } catch (IOException e) {
