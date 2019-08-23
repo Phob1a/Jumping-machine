@@ -683,11 +683,12 @@ public class BuildController {
             controller.JKTree=JKTree;
             controller.startID=startID;
             controller.jkID=startID;
+            controller.init();
             // controller.setTitle(title);
             // controller.setContext(content);
             Scene scene = new Scene(runRoot);
             stage.setScene(scene);
-            stage.setX(900.0);
+            stage.setX(750.0);
             stage.setY(40.0);
             stage.showAndWait();
             resetJKTree();

@@ -7,6 +7,7 @@ public class Point {
     private int pointID;
     private double x;
     private double y;
+    Circle pt;
     //private Circle point;
     private int traceID;
     ArrayList<Link>links;
@@ -16,6 +17,7 @@ public class Point {
         this.y = y;
         this.traceID = traceID;
         this.links=new ArrayList<>();
+        this.pt=new Circle(x,y,3.0);
     }
 
     public Point(){

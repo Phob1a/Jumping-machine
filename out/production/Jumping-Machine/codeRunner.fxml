@@ -10,25 +10,41 @@
 
 <Pane fx:id="runRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RunController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#950821" height="98.0" layoutX="-5.0" stroke="BLACK" strokeType="INSIDE" width="705.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c90f31" height="51.0" layoutX="-5.0" stroke="BLACK" strokeType="INSIDE" width="910.0" />
       <Button fx:id="nextBtn" layoutX="324.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#nextState" style="-fx-background-color: #fcc379;" text="Next" textFill="WHITE" />
       <Label fx:id="showStep" layoutX="20.0" layoutY="16.0" textFill="#f5f0cb">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Label fx:id="showStack" alignment="CENTER_RIGHT" layoutX="137.0" layoutY="49.0" prefHeight="52.0" prefWidth="556.0" text="nil" textFill="#f5f0cb">
+      <Line endX="784.0" endY="2.0" layoutX="115.0" layoutY="49.0" startX="-111.0" stroke="#fcc379" strokeWidth="6.0" />
+      <Button fx:id="lastBtn" layoutX="252.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#lastState" style="-fx-background-color: #fcc379;" text="Last" textFill="WHITE" />
+      <ListView fx:id="stackView" layoutY="141.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="257.0" prefWidth="154.0" />
+      <Rectangle fx:id="stackRec" arcHeight="5.0" arcWidth="5.0" fill="#ee5656" height="37.0" layoutY="104.0" stroke="BLACK" strokeType="INSIDE" width="154.0" />
+      <Label fx:id="stackLabel" layoutX="44.0" layoutY="111.0" text="Stack" textFill="#fffefe">
          <font>
-            <Font size="24.0" />
-         </font></Label>
-      <ListView fx:id="bindView" layoutX="700.0" prefHeight="208.0" prefWidth="200.0" />
-      <Line endX="585.0" layoutX="115.0" layoutY="49.0" startX="-111.0" stroke="#fcc379" strokeWidth="6.0" />
-      <Label layoutX="20.0" layoutY="56.0" prefHeight="37.0" prefWidth="71.0" text="Stack:" textFill="#f5f0cb">
-         <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Line endX="-37.0" endY="-141.0" layoutX="146.0" layoutY="194.0" startX="-37.0" startY="-96.0" stroke="#fcc379" strokeWidth="3.0" />
-      <Button fx:id="lastBtn" layoutX="252.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#lastState" style="-fx-background-color: #fcc379;" text="Last" textFill="WHITE" />
-      <ListView layoutX="1.0" layoutY="225.0" prefHeight="268.0" prefWidth="155.0" />
+      <ListView fx:id="tpView" layoutX="124.0" layoutY="652.0" orientation="HORIZONTAL" prefHeight="37.0" prefWidth="506.0" visible="false" />
+      <Rectangle fx:id="tpRec" arcHeight="5.0" arcWidth="5.0" fill="#ee5656" height="37.0" layoutX="-7.0" layoutY="652.0" stroke="BLACK" strokeType="INSIDE" width="131.0" visible="false"/>
+      <Label fx:id="tpLabel" layoutX="19.0" layoutY="659.0" text="thunk point" textFill="WHITE" visible="false">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="frameRec" arcHeight="5.0" arcWidth="5.0" fill="#ee5656" height="37.0" layoutX="-7.0" layoutY="699.0" stroke="BLACK" strokeType="INSIDE" width="131.0" />
+      <ListView fx:id="frameView" layoutX="124.0" layoutY="699.0" orientation="HORIZONTAL" prefHeight="37.0" prefWidth="506.0" />
+      <Label fx:id="frameLabel" layoutX="43.0" layoutY="706.0" text="frame" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ListView fx:id="bindView" layoutX="739.0" layoutY="153.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="257.0" prefWidth="154.0" />
+      <Rectangle fx:id="bindRec" arcHeight="5.0" arcWidth="5.0" fill="#ee5656" height="37.0" layoutX="739.0" layoutY="115.0" stroke="BLACK" strokeType="INSIDE" width="154.0" />
+      <Label fx:id="bindLabel" layoutX="792.0" layoutY="122.0" text="Binding" textFill="#fffefe">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

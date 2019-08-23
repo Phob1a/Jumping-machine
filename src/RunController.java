@@ -1,6 +1,8 @@
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -13,12 +15,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.*;
 
+import java.security.Key;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -58,6 +59,143 @@ public class RunController {
 
     @FXML
     private ListView<String>bindView=new ListView<>();
+
+    @FXML
+    private ListView<String>stackView=new ListView<>();
+
+    @FXML
+    private Label stackLabel;
+
+    @FXML
+    private Rectangle stackRec;
+
+    @FXML
+    private ListView<String>frameView=new ListView<>();
+
+    @FXML
+    private Label frameLabel;
+
+    @FXML
+    private Rectangle frameRec;
+
+    @FXML
+    private ListView<String>tpView=new ListView<>();
+
+    @FXML
+    private Label tpLabel;
+
+    @FXML
+    private Rectangle tpRec;
+
+    @FXML
+    private Label bindLabel;
+
+    @FXML
+    private Rectangle bindRec;
+
+    public void init() {
+        ObservableList<String> stackList=FXCollections.observableArrayList();
+        stackList.add("nil");
+        stackView.setItems(stackList);
+        final ObjectProperty<Point2D> mousePosition = new SimpleObjectProperty<>();
+
+        stackRec.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mousePosition.set(new Point2D(event.getSceneX(), event.getSceneY()));
+            }
+        });
+
+        stackRec.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double deltaX = event.getSceneX() - mousePosition.get().getX();
+                double deltaY = event.getSceneY() - mousePosition.get().getY();
+                stackRec.setLayoutX(stackRec.getLayoutX() + deltaX);
+                stackRec.setLayoutY(stackRec.getLayoutY() + deltaY);
+                stackLabel.setLayoutX(stackLabel.getLayoutX() + deltaX);
+                stackLabel.setLayoutY(stackLabel.getLayoutY() + deltaY);
+                stackView.setLayoutX(stackView.getLayoutX()+deltaX);
+                stackView.setLayoutY(stackView.getLayoutY()+deltaY);
+
+
+                mousePosition.set(new Point2D(event.getSceneX(), event.getSceneY()));
+            }
+        });
+
+            tpRec.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mousePosition.set(new Point2D(event.getSceneX(), event.getSceneY()));
+            }
+        });
+
+        tpRec.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double deltaX = event.getSceneX() - mousePosition.get().getX();
+                double deltaY = event.getSceneY() - mousePosition.get().getY();
+                tpRec.setLayoutX(tpRec.getLayoutX() + deltaX);
+                tpRec.setLayoutY(tpRec.getLayoutY() + deltaY);
+                tpLabel.setLayoutX(tpLabel.getLayoutX() + deltaX);
+                tpLabel.setLayoutY(tpLabel.getLayoutY() + deltaY);
+                tpView.setLayoutX(tpView.getLayoutX()+deltaX);
+                tpView.setLayoutY(tpView.getLayoutY()+deltaY);
+
+
+                mousePosition.set(new Point2D(event.getSceneX(), event.getSceneY()));
+            }
+        });
+
+        frameRec.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mousePosition.set(new Point2D(event.getSceneX(), event.getSceneY()));
+            }
+        });
+
+        frameRec.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double deltaX = event.getSceneX() - mousePosition.get().getX();
+                double deltaY = event.getSceneY() - mousePosition.get().getY();
+                frameRec.setLayoutX(frameRec.getLayoutX() + deltaX);
+                frameRec.setLayoutY(frameRec.getLayoutY() + deltaY);
+                frameLabel.setLayoutX(frameLabel.getLayoutX() + deltaX);
+                frameLabel.setLayoutY(frameLabel.getLayoutY() + deltaY);
+                frameView.setLayoutX(frameView.getLayoutX()+deltaX);
+                frameView.setLayoutY(frameView.getLayoutY()+deltaY);
+
+
+                mousePosition.set(new Point2D(event.getSceneX(), event.getSceneY()));
+            }
+        });
+
+        bindRec.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mousePosition.set(new Point2D(event.getSceneX(), event.getSceneY()));
+            }
+        });
+
+        bindRec.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double deltaX = event.getSceneX() - mousePosition.get().getX();
+                double deltaY = event.getSceneY() - mousePosition.get().getY();
+                bindRec.setLayoutX(bindRec.getLayoutX() + deltaX);
+                bindRec.setLayoutY(bindRec.getLayoutY() + deltaY);
+                bindLabel.setLayoutX(bindLabel.getLayoutX() + deltaX);
+                bindLabel.setLayoutY(bindLabel.getLayoutY() + deltaY);
+                bindView.setLayoutX(bindView.getLayoutX()+deltaX);
+                bindView.setLayoutY(bindView.getLayoutY()+deltaY);
+
+
+                mousePosition.set(new Point2D(event.getSceneX(), event.getSceneY()));
+            }
+        });
+
+    }
 
 
     public class Recording{
@@ -309,6 +447,9 @@ public class RunController {
                 jumpingPoint.put(npt,jumpID);
                 str=str.replaceAll("pt",npt);
                 value=npt;
+                Circle c=jumpTree.get(jumpID).linkpoints.get(1).pt;
+                c.setFill(Color.BLACK);
+                //runRoot.getChildren().add(c);
                 jumpTree.get(jumpID).setText(str);
                 jumpTree.get(jumpID).getLabel().setText(str);
                 recordings.get(stateID).setText(jumpTree.get(jumpID).getText());
@@ -342,6 +483,7 @@ public class RunController {
             rec.setNextJkID(jkID);
             rec.setStackPush("hgon"+jumpID);
             rec.setAddHgon("hgon"+jumpID);
+            updateHgonList("hgon"+jumpID);
 
         }
         else if (code.charAt(code.length() - 1) == '\'') {
@@ -900,7 +1042,14 @@ public class RunController {
             str+="::";
         }
         str+="nil";
-        showStack.setText(str);
+        //showStack.setText(str);
+        ObservableList<String> stackList = FXCollections.observableArrayList();
+        stackList.add("nil");
+        for(int i=0;i<stack.size();i++){
+            stackList.add(stack.get(i));
+        }
+
+        stackView.setItems(stackList);
     }
 
 //    private void binding(){
@@ -1030,6 +1179,41 @@ public class RunController {
            point.setX(point.getX()+x);
            point.setY(point.getY()+y);
        }
+    }
+
+
+    public void updateHgonList(String hgon){
+        ObservableList<String> hgonList=FXCollections.observableArrayList();
+        for(String key:hgonTable.keySet()){
+             hgonList.add(key);
+        }
+        frameView.setItems(hgonList);
+        frameView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String hgon=frameView.getSelectionModel().getSelectedItems().toString();
+                for(String key:hgonTable.keySet()){
+                  int id=hgonTable.get(key);
+                  if(!hgon.equals(key)){
+                      jumpTree.get(id).getShape().setStroke(Color.BLACK);
+                      int ckid=jumpTree.get(id).getTeacherID();
+                      JKTree.get(ckid).getShape().setStroke(Color.BLACK);
+                  }
+                  else{
+                     if(jumpTree.get(id).getShape().getStroke().equals(Color.ORANGE)){
+                         jumpTree.get(id).getShape().setStroke(Color.BLACK);
+                         int ckid=jumpTree.get(id).getTeacherID();
+                         JKTree.get(ckid).getShape().setStroke(Color.BLACK);
+                     }
+                     else{
+                         jumpTree.get(id).getShape().setStroke(Color.ORANGE);
+                         int ckid=jumpTree.get(id).getTeacherID();
+                         JKTree.get(ckid).getShape().setStroke(Color.ORANGE);
+                     }
+                  }
+                }
+            }
+        });
     }
 }
 
