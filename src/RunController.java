@@ -25,7 +25,7 @@ import java.util.Stack;
 public class RunController {
 
     ArrayList<JKTrace>JKTree;
-    int stateID=0;
+    int stateID=-1;
     int startID;
     int cycle;
     int step;
@@ -61,9 +61,10 @@ public class RunController {
 
 
     public class Recording{
-        int jumpID;
+        int recJumpID;
         int cycle;
         int nextJkID;
+
         String text;
 
         public int getNextJkID() {
@@ -89,16 +90,21 @@ public class RunController {
         String addHgon;
         Link link;
 
-        public Recording(int jumpID){
-            this.jumpID=jumpID;
+        public Recording(int recJumpID,String phase){
+            this.recJumpID=recJumpID;
+            this.phase=phase;
+            this.stackPush=new String();
+            this.stackPop=new String();
+            this.addPt=new String();
+            this.addHgon=new String();
         }
 
         public int getJumpID() {
-            return jumpID;
+            return recJumpID;
         }
 
-        public void setJumpID(int jumpID) {
-            this.jumpID = jumpID;
+        public void setJumpID(int recJumpID) {
+            this.recJumpID = recJumpID;
         }
 
         public int getCycle() {
@@ -160,14 +166,16 @@ public class RunController {
 
         public void trackBack(){
             stateID--;
+            if(nextBtn.isDisable()) nextBtn.setDisable(false);
             Recording rec=recordings.get(stateID);
             updateCycleInfo();
             jumpID=rec.getJumpID();
             JumpTrace trace=jumpTree.get(jumpID);
             jkID=trace.getTeacherID();
             if(this.phase.equals("fetch")){
-                trace.getShape().setVisible(false);
-                trace.getLabel().setVisible(false);
+                JumpTrace removeTrace=jumpTree.get(this.getJumpID());
+                removeTrace.getShape().setVisible(false);
+                removeTrace.getLabel().setVisible(false);
                 rec.getLink().getLine().setStroke(Color.RED);
                 rec.getLink().getCorrespondJKLink().getLine().setStroke(Color.RED);
                 jkID=rec.getNextJkID();
@@ -182,11 +190,15 @@ public class RunController {
                 trace.getShape().setStroke(Color.RED);
                 JKTree.get(jkID).getShape().setStroke(Color.RED);
                 this.getLink().getLine().setVisible(false);
+                this.getLink().getLine().setStroke(Color.BLACK);
+                this.getLink().getCorrespondJKLink().getLine().setStroke(Color.BLACK);
                 if(!stackPop.isEmpty()){
                     stack.push(stackPop);
+                    updateStackLabel();
                 }
                 if(!stackPush.isEmpty()){
                     stack.pop();
+                    updateStackLabel();
                 }
                 if(!addHgon.isEmpty()){
                     hgonTable.remove(addHgon);
@@ -222,13 +234,15 @@ public class RunController {
                 JKTree.get(jkID).getShape().setStroke(Color.BLACK);
                 rec.getLink().getLine().setStroke(Color.RED);
                 rec.getLink().getCorrespondJKLink().getLine().setStroke(Color.RED);
-                if(!stackPop.isEmpty()){
+                if(!rec.stackPop.isEmpty()){
                     stack.pop();
+                    updateStackLabel();
                 }
-                if(!stackPush.isEmpty()){
-                    stack.push(stackPush);
+                if(!rec.stackPush.isEmpty()){
+                    stack.push(rec.stackPush);
+                    updateStackLabel();
                 }
-                if(!addHgon.isEmpty()){
+                if(!rec.addHgon.isEmpty()){
                     hgonTable.put(addHgon,jumpID);
                 }
                 if(!rec.getLink().getTag().getText().isEmpty()){
@@ -242,6 +256,7 @@ public class RunController {
             }
             else{
                 this.link.getLine().setStroke(Color.BLACK);
+                this.link.getCorrespondJKLink().getLine().setStroke(Color.BLACK);
                 trace.getShape().setVisible(true);
                 trace.getLabel().setVisible(true);
                 trace.getLabel().setText(rec.getText());
@@ -259,10 +274,21 @@ public class RunController {
         showCycle(ph[stateID%3]);
     }
 
-    public void recordState(){
-        Recording rec=new Recording(jumpID);
+    public void recordState(String phase){
+        Recording rec=new Recording(jumpID,phase);
         recordings.add(rec);
         rec.nextJkID=jkID;
+        rec.setText(jumpTree.get(jumpID).getLabel().getText());
+
+        if(step==0){
+
+        }
+        else if(step==1){
+
+        }
+        else{
+
+        }
     }
 
     public void fetch(){
@@ -275,6 +301,7 @@ public class RunController {
     public void decode(){
         showCycle("decode");
         String str=jumpTree.get(jumpID).getText();
+        recordState("decode");
         for(String s:str.split(" ")){
             if(s.equals("pt")){
                 int pid=jumpingPoint.size();
@@ -284,6 +311,8 @@ public class RunController {
                 value=npt;
                 jumpTree.get(jumpID).setText(str);
                 jumpTree.get(jumpID).getLabel().setText(str);
+                recordings.get(stateID).setText(jumpTree.get(jumpID).getText());
+                recordings.get(stateID).addPt=npt;
             }
         }
         step=2;
@@ -307,6 +336,13 @@ public class RunController {
             int newJkID=findNextJkTrace(oldLink);
             JKTree.get(newJkID).setFatherid(jkID);
             jkID=newJkID;
+            recordState("execute");
+            Recording rec=recordings.get(stateID);
+            rec.setLink(jumpLink);
+            rec.setNextJkID(jkID);
+            rec.setStackPush("hgon"+jumpID);
+            rec.setAddHgon("hgon"+jumpID);
+
         }
         else if (code.charAt(code.length() - 1) == '\'') {
 
@@ -321,6 +357,11 @@ public class RunController {
             int newJkID=findNextJkTrace(oldLink);
             JKTree.get(newJkID).setFatherid(jkID);
             jkID=newJkID;
+            recordState("execute");
+            Recording rec=recordings.get(stateID);
+            rec.setLink(jumpLink);
+            rec.setNextJkID(jkID);
+            rec.setStackPush(value);
         }
         else if (code.substring(0,1).equals("λ")) {
 
@@ -335,6 +376,12 @@ public class RunController {
             int newJkID=findNextJkTrace(oldLink);
             JKTree.get(newJkID).setFatherid(jkID);
             jkID=newJkID;
+            recordState("execute");
+            Recording rec=recordings.get(stateID);
+            rec.setLink(jumpLink);
+            rec.setNextJkID(jkID);
+            rec.setStackPop(value);
+
         }
         else if (code.substring(0, 5).equals("print")) {
 
@@ -346,6 +393,10 @@ public class RunController {
             addTagAndBindings(oldLink,jumpLink);
             JKTree.get(newJkID).setFatherid(jkID);
             jkID=newJkID;
+            recordState("execute");
+            Recording rec=recordings.get(stateID);
+            rec.setLink(jumpLink);
+            rec.setNextJkID(jkID);
         }
         else if(code.substring(0,2).equals("pm")){
             value=code.split(" ")[1];
@@ -354,6 +405,10 @@ public class RunController {
             Point startPoint=jumpTree.get(jumpID).linkpoints.get(0);
             Link jumpLink=buildLink(startPoint,endPoint);
             patternMatch(jumpLink);
+            recordState("execute");
+            Recording rec=recordings.get(stateID);
+            rec.setLink(jumpLink);
+            rec.setNextJkID(jkID);
 
         }
         else if (code.substring(0, 3).equals("let")) {
@@ -367,6 +422,11 @@ public class RunController {
             int newJkID=findNextJkTrace(oldLink);
             JKTree.get(newJkID).setFatherid(jkID);
             jkID=newJkID;
+            recordState("execute");
+            Recording rec=recordings.get(stateID);
+            rec.setLink(jumpLink);
+            rec.setNextJkID(jkID);
+
         }
         else if (code.substring(0, 5).equals("force")) {
             String key=code.split(" ")[1];
@@ -387,6 +447,10 @@ public class RunController {
                     int newJkID=findNextJkTrace(oldLink);
                     JKTree.get(newJkID).setFatherid(jkID);
                     jkID=newJkID;
+                    recordState("execute");
+                    Recording rec=recordings.get(stateID);
+                    rec.setLink(jumpLink);
+                    rec.setNextJkID(jkID);
                 }
             }
         }
@@ -410,6 +474,11 @@ public class RunController {
                 int newJkID=findNextJkTrace(oldLink);
                 JKTree.get(newJkID).setFatherid(jkID);
                 jkID=newJkID;
+                recordState("execute");
+                Recording rec=recordings.get(stateID);
+                rec.setLink(jumpLink);
+                rec.setNextJkID(jkID);
+                rec.setStackPop(hgon);
             }
             else{
 //                if(jumpTree.get(jumpID).bindTable.containsKey(value)) {
@@ -417,6 +486,8 @@ public class RunController {
 //                }
                 MsgBoxController.display("The final return value is: "+value);
                 nextBtn.setDisable(true);
+                recordState("execute");
+                Recording rec=recordings.get(stateID);
             }
 
         }
@@ -581,7 +652,7 @@ public class RunController {
             trace.updateBindTable(jumpTree.get(oldJumpID));
             trace.updateLink(jumpTree.get(oldJumpID));
         }
-
+        recordState("fetch");
         shape.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -704,12 +775,25 @@ public class RunController {
         return e;
     }
 
-    public void nextState(){
-        codeExecute();
+
+    public void lastState(MouseEvent event){
+        if(stateID==0) return;
+        Recording rec=recordings.get(stateID);
+        rec.trackBack();
+    }
+
+    public void nextState(MouseEvent event){
+
+        if(recordings.size()==0||stateID+1>=recordings.size()) codeExecute();
+        else{
+            Recording rec=recordings.get(stateID);
+            rec.trackForward();
+        }
     }
 
 
     public void codeExecute(){
+        stateID++;
         switch (step){
             case 0:{
                 fetch();
