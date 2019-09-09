@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Point {
 
-    private int pointID;
-    private double x;
+    private int pointID; //Point id;
+    private double x;    //axis of the point
     private double y;
-    Circle pt;
-    //private Circle point;
-    private int traceID;
-    ArrayList<Link>links;
+    Circle pt;    //The javaFX object displayed on Canvas
+
+    private int traceID; //To record the polygon ID that the point is placed
+    ArrayList<Link>links; //The links started or end on the point are stored in the array list
 
     public Point(double x, double y, int traceID) {
         this.x = x;

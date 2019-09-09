@@ -1,8 +1,5 @@
-import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -10,22 +7,19 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
-import java.security.Key;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Stack;
 
 public class RunController {
 
-    ArrayList<JKTrace>JKTree;
+    ArrayList<CodeBlock>JKTree;
     int stateID=-1;
     int startID;
     int cycle;
@@ -39,7 +33,7 @@ public class RunController {
 
 
 
-    ArrayList<JumpTrace> jumpTree=new ArrayList<>();
+    ArrayList<TraceBlock> jumpTree=new ArrayList<>();
     HashMap<String,Integer> jumpingPoint=new HashMap<>();
     HashMap<String,Integer> hgonTable=new HashMap<>();
     Stack<String> stack=new Stack<>();
@@ -308,10 +302,10 @@ public class RunController {
             Recording rec=recordings.get(stateID);
             updateCycleInfo();
             jumpID=rec.getJumpID();
-            JumpTrace trace=jumpTree.get(jumpID);
+            TraceBlock trace=jumpTree.get(jumpID);
             jkID=trace.getTeacherID();
             if(this.phase.equals("fetch")){
-                JumpTrace removeTrace=jumpTree.get(this.getJumpID());
+                TraceBlock removeTrace=jumpTree.get(this.getJumpID());
                 removeTrace.getShape().setVisible(false);
                 removeTrace.getLabel().setVisible(false);
                 rec.getLink().getLine().setStroke(Color.RED);
@@ -358,7 +352,7 @@ public class RunController {
             updateCycleInfo();
             jumpID=rec.getJumpID();
 
-            JumpTrace trace=jumpTree.get(jumpID);
+            TraceBlock trace=jumpTree.get(jumpID);
             jkID=trace.getTeacherID();
             if(this.phase.equals("fetch")){
                 if(rec.addPt!=null){
@@ -652,7 +646,7 @@ public class RunController {
 //    }
 
     public void calReturnValue(){
-        JumpTrace trace=jumpTree.get(jumpID);
+        TraceBlock trace=jumpTree.get(jumpID);
         if(value.charAt(0)!='('){
             if(trace.bindTable.containsKey(value)){
                 value=trace.bindTable.get(value);
@@ -674,7 +668,7 @@ public class RunController {
 
     public void patternMatch(Link link){
 
-        JKTrace trace=JKTree.get(jkID);
+        CodeBlock trace=JKTree.get(jkID);
         Link oldLink;
         String[] val=stringHandle();
         if(existBranch(0)){
@@ -759,7 +753,7 @@ public class RunController {
 
     public void addTrace() {
         Label label=new Label(JKTree.get(jkID).getText());
-        JumpTrace trace=new JumpTrace(JKTree.get(jkID).getType(),JKTree.get(jkID).getText());
+        TraceBlock trace=new TraceBlock(JKTree.get(jkID).getType(),JKTree.get(jkID).getText());
         jumpTree.add(trace);
         oldJumpID=jumpID;
         jumpID=jumpTree.size()-1;
@@ -856,7 +850,7 @@ public class RunController {
     public Link buildLink(Point a,Point b){
         Line line=new Line(a.getX(),a.getY(),b.getX(),b.getY());
         Link link=new Link(line,a,b);
-        link.setSettled(false);
+        //link.setSettled(false);
         line.setStroke(Color.BLACK);
         runRoot.getChildren().add(line);
         a.links.add(link);
@@ -970,7 +964,7 @@ public class RunController {
     public void setBinding(Link jumpLink){
         if(jumpLink.bindings.size()==0) return;
         if(jumpLink.bindings.size()==1){
-            JumpTrace trace=jumpTree.get(jumpID);
+            TraceBlock trace=jumpTree.get(jumpID);
             if(trace.bindTable.containsKey(value)){
                 value=trace.bindTable.get(value);
             }
@@ -993,32 +987,32 @@ public class RunController {
     }
 
     public Link findNextLink(int pointId){
-        Trace trace=JKTree.get(jkID);
+        Block block =JKTree.get(jkID);
         if(!existBranch(pointId)) {
             if (jkID == startID) {
-                Link link = trace.linkpoints.get(pointId).links.get(0);
+                Link link = block.linkpoints.get(pointId).links.get(0);
                 return link;
             } else {
-                for (Link link : trace.linkpoints.get(pointId).links) {
-                    if ((link.getTraceID1() == trace.getId() && link.getTraceID2() != trace.getFatherid()) || (link.getTraceID2() == trace.getId() && link.getTraceID1() != trace.getFatherid())) {
+                for (Link link : block.linkpoints.get(pointId).links) {
+                    if ((link.getTraceID1() == block.getId() && link.getTraceID2() != block.getFatherid()) || (link.getTraceID2() == block.getId() && link.getTraceID1() != block.getFatherid())) {
                         return link;
                     }
                 }
             }
         }
         else{
-            for(Link link:trace.linkpoints.get(pointId).links){
+            for(Link link: block.linkpoints.get(pointId).links){
                 if(link.getTag().getText().equals(value)){
                     return link;
                 }
             }
         }
-        Link link=trace.linkpoints.get(pointId).links.get(0);
+        Link link= block.linkpoints.get(pointId).links.get(0);
         return link;
     }
 
     public boolean existBranch(int pid){
-        JKTrace trace=JKTree.get(jkID);
+        CodeBlock trace=JKTree.get(jkID);
         if(jkID==startID){
             if(trace.linkpoints.get(pid).links.size()<=1) return false;
             else return true;

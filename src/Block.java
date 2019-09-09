@@ -4,7 +4,7 @@ import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 
-public class Trace {
+public class Block {
 
     private int id;
     private int fatherid;
@@ -16,7 +16,7 @@ public class Trace {
     ArrayList<Point> linkpoints;
 
 
-    public Trace(String type,String text){
+    public Block(String type, String text){
         this.type=type;
         this.text=text;
         this.linkpoints=new ArrayList<>();

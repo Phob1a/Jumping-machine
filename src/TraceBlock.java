@@ -4,7 +4,7 @@ import javafx.scene.shape.Shape;
 
 import java.util.HashMap;
 
-public class JumpTrace extends Trace {
+public class TraceBlock extends Block {
 
     private int teacherID;
     Polygon executeLabel;
@@ -18,13 +18,13 @@ public class JumpTrace extends Trace {
         this.executeLabel = executeLabel;
     }
 
-    public JumpTrace(String type, String text) {
+    public TraceBlock(String type, String text) {
         super(type, text);
         this.bindTable=new HashMap<>();
         this.executeLabel=new Polygon();
     }
 
-    public void updateBindTable(JumpTrace t){
+    public void updateBindTable(TraceBlock t){
         for(String key: t.bindTable.keySet()){
             String val=t.bindTable.get(key);
             this.bindTable.put(key,val);
@@ -55,7 +55,7 @@ public class JumpTrace extends Trace {
     }
 
 
-    public void updateLink(JumpTrace trace) {
+    public void updateLink(TraceBlock trace) {
 
 
         for(Point p:trace.linkpoints){

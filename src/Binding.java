@@ -34,3 +34,4 @@ public class Binding {
         this.getBindKey().setLayoutX(this.getEllipse().getCenterX()-len);
     }
 }
+

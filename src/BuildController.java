@@ -41,7 +41,7 @@ public class BuildController {
 
     String drawType;
 
-    public ArrayList<JKTrace>JKTree=new ArrayList<>();
+    public ArrayList<CodeBlock>JKTree=new ArrayList<>();
 
 
     @FXML
@@ -221,7 +221,7 @@ public class BuildController {
     public void drawLine(){
         Point a=new Point(-1.0,0);
         Point b=new Point(-1.0,0);
-        for(JKTrace t:JKTree){
+        for(CodeBlock t:JKTree){
             for(Point p:t.linkpoints){
                 if(calDis(st,p)<20.0){
                     a=p;
@@ -249,7 +249,7 @@ public class BuildController {
     public void drawTrace(){
         String text=inputField.getText();
         int id=JKTree.size();
-        JKTrace trace=new JKTrace(drawType,text);
+        CodeBlock trace=new CodeBlock(drawType,text);
         JKTree.add(trace);
         trace.setId(id);
         Label l = new Label(text);
@@ -293,7 +293,7 @@ public class BuildController {
             public void handle(MouseEvent event) {
                 if(event.getButton().equals(MouseButton.SECONDARY)) {
                 int id = Integer.parseInt(p.getId());
-                JKTrace trace = JKTree.get(id);
+                CodeBlock trace = JKTree.get(id);
                 double x = p.getLayoutX();
                 double y = p.getLayoutY();
                 tagInput=new TextField();
@@ -421,8 +421,8 @@ public class BuildController {
                     y1=link.getP1().getY();
                     y2=link.getP2().getY();
                     root.getChildren().remove(line);
-                    JKTrace t1=JKTree.get(id1);
-                    JKTrace t2=JKTree.get(id2);
+                    CodeBlock t1=JKTree.get(id1);
+                    CodeBlock t2=JKTree.get(id2);
                     for(Point p:t1.linkpoints){
                         for(Link l:p.links){
                             if(l.equals(link)){
@@ -487,7 +487,7 @@ public class BuildController {
                     if (!pressed) return;
                     double x = event.getX();
                     double y = event.getY();
-                    JKTrace trace=new JKTrace("Pgon",tag);
+                    CodeBlock trace=new CodeBlock("Pgon",tag);
                     JKTree.add(trace);
                     int id=JKTree.size()-1;
                     trace.setId(id);
@@ -527,7 +527,7 @@ public class BuildController {
                 if (!pressed) return;
                 double x = event.getX();
                 double y = event.getY();
-                JKTrace trace=new JKTrace("Hgon",tag);
+                CodeBlock trace=new CodeBlock("Hgon",tag);
                 JKTree.add(trace);
                 int id=JKTree.size()-1;
                 trace.setId(id);
@@ -566,7 +566,7 @@ public class BuildController {
 //                if (!pressed) return;
 //                double x = event.getX();
 //                double y = event.getY();
-//                JKTrace trace=new JKTrace("Ellipse",tag);
+//                CodeBlock trace=new CodeBlock("Ellipse",tag);
 //                JKTree.add(trace);
 //                int id=JKTree.size()-1;
 //                trace.setId(id);
@@ -700,7 +700,7 @@ public class BuildController {
     }
 
     private void resetJKTree() {
-        for(JKTrace trace:JKTree){
+        for(CodeBlock trace:JKTree){
             trace.getLabel().setTextFill(Color.BLACK);
             trace.getShape().setStroke(Color.BLACK);
             trace.getShape().setFill(Color.WHITE);
@@ -714,7 +714,7 @@ public class BuildController {
             JKTree.get(startID).getShape().setStroke(Color.BLACK);
             fy=900.0;
         }
-      for(JKTrace trace:JKTree){
+      for(CodeBlock trace:JKTree){
           if(trace.linkpoints.get(0).getY()<fy){
               fy=trace.linkpoints.get(0).getY();
               startID=trace.getId();
@@ -777,11 +777,11 @@ public class BuildController {
         try{
             BufferedWriter bw=new BufferedWriter(new FileWriter(file));
             bw.write(JKTree.size()+"\n");
-            for(JKTrace trace:JKTree){
+            for(CodeBlock trace:JKTree){
                 bw.write(trace.getText()+"\n"+trace.linkpoints.get(0).getX()+" "+trace.linkpoints.get(0).getY()+"\n");
 
             }
-            for(JKTrace trace:JKTree){
+            for(CodeBlock trace:JKTree){
                 int id=trace.getId();
                 for(int t=0;t<2;t++) {
                     for (Link link : trace.linkpoints.get(t).links) {
@@ -813,7 +813,7 @@ public class BuildController {
 
     public void readFromFile(String filename){
 
-        for(JKTrace trace:JKTree){
+        for(CodeBlock trace:JKTree){
             removeAll(trace);
         }
         JKTree.clear();
@@ -831,7 +831,7 @@ public class BuildController {
                 double x = Double.parseDouble(rdLine[0]);
                 double y = Double.parseDouble(rdLine[1]);
                 String type = text.equals("to") ? "Hgon" : "Pgon";
-                JKTrace trace = new JKTrace(type, text);
+                CodeBlock trace = new CodeBlock(type, text);
                 trace.setId(id);
                 JKTree.add(trace);
                 Label l = new Label(text);
@@ -872,7 +872,7 @@ public class BuildController {
                     public void handle(MouseEvent event) {
                         if (event.getButton().equals(MouseButton.SECONDARY)) {
                             int id = Integer.parseInt(p.getId());
-                            JKTrace trace = JKTree.get(id);
+                            CodeBlock trace = JKTree.get(id);
                             double x = p.getLayoutX();
                             double y = p.getLayoutY();
                             tagInput = new TextField();
@@ -999,7 +999,7 @@ public class BuildController {
         fileFlag="Read";
     }
 
-    public void removeAll(JKTrace trace){
+    public void removeAll(CodeBlock trace){
         root.getChildren().remove(trace.getShape());
         root.getChildren().remove(trace.getLabel());
         for(Point p:trace.linkpoints){
@@ -1016,7 +1016,7 @@ public class BuildController {
     }
 
     public void clearScreen(MouseEvent event){
-        for(JKTrace trace:JKTree){
+        for(CodeBlock trace:JKTree){
             removeAll(trace);
         }
         JKTree.clear();

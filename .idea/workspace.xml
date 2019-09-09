@@ -2,13 +2,90 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b071fb27-80a3-4478-89a1-952c78ba6338" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/doc/Dai-1926198.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/MsgBox.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/codeRunner.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$4$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$8$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$8$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/BuildController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/CodeBuilder$GraphSyntax.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/CodeBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/GUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/GUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/Point.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/Trace.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$1$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$2$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$4$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$4$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$5$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$5$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$5$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/UIController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/test.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/testController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/testController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/testController$3$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/testController$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/testController$Graph.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/testController$Trace.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/GUI/testController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/JKTrace.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/JumpTrace.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/Link.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/Link.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$Recording.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController$Recording.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/RunController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/Trace.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jumping-Machine/codeRunner.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jumping-Machine/codeRunner.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Binding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Binding.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BuildController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BuildController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/CodeBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/GUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/GUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Point.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Trace.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/UIController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/test.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/testController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JKTrace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CodeBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JumpTrace.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JumpingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JumpingMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Link.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RunController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RunController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Trace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Block.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/codeRunner.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeRunner.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test1" beforeDir="false" afterPath="$PROJECT_DIR$/test1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1" beforeDir="false" afterPath="$PROJECT_DIR$/test/test1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test2" beforeDir="false" afterPath="$PROJECT_DIR$/test/test2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test5" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,11 +98,13 @@
     <session id="433403764">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.2" value="2" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -35,25 +114,27 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="fxml" value="7" />
-          <entry key="java" value="27" />
+          <entry key="fxml" value="11" />
+          <entry key="java" value="33" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="27" />
-          <entry key="XML" value="7" />
+          <entry key="JAVA" value="33" />
+          <entry key="XML" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="dummy" value="15" />
           <entry key="fxml" value="89" />
-          <entry key="java" value="6739" />
+          <entry key="java" value="7512" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="6739" />
+          <entry key="JAVA" value="7512" />
+          <entry key="PLAIN_TEXT" value="15" />
           <entry key="XML" value="89" />
         </counts>
       </usages-collector>
@@ -63,38 +144,41 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/codeRunner.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
+            <state relative-caret-position="435">
               <caret line="29" column="110" selection-start-line="29" selection-start-column="110" selection-end-line="29" selection-end-column="110" />
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JumpTrace.java">
+        <entry file="file://$PROJECT_DIR$/src/GUI/codeRunner.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/MsgBox.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/GUI.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="62" column="57" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="57" />
+            <state relative-caret-position="255">
+              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI.fxml">
+        <entry file="file://$PROJECT_DIR$/src/CodeBlock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BuildController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1108">
-              <caret line="190" lean-forward="true" selection-start-line="151" selection-start-column="7" selection-end-line="190" />
+            <state>
+              <caret column="19" selection-start-column="13" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -102,100 +186,46 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Binding.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="23" column="8" selection-start-line="22" selection-start-column="15" selection-end-line="23" selection-end-column="8" />
+            <state relative-caret-position="420">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DrawDemo.java">
+        <entry file="file://$PROJECT_DIR$/src/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
+            <state relative-caret-position="345">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RunController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-450">
-              <caret line="450" column="15" lean-forward="true" selection-start-line="450" selection-start-column="15" selection-end-line="450" selection-end-column="15" />
-              <folding>
-                <element signature="e#1662#1663#0" expanded="true" />
-                <element signature="e#1701#1702#0" expanded="true" />
-                <element signature="e#1750#1751#0" expanded="true" />
-                <element signature="e#1798#1799#0" expanded="true" />
-                <element signature="e#1833#1834#0" expanded="true" />
-                <element signature="e#1868#1869#0" expanded="true" />
-                <element signature="e#1912#1913#0" expanded="true" />
-                <element signature="e#1952#1953#0" expanded="true" />
-                <element signature="e#2249#2250#0" expanded="true" />
-                <element signature="e#2286#2287#0" expanded="true" />
-                <element signature="e#2331#2332#0" expanded="true" />
-                <element signature="e#2375#2376#0" expanded="true" />
-                <element signature="e#2408#2409#0" expanded="true" />
-                <element signature="e#2444#2445#0" expanded="true" />
-                <element signature="e#2487#2488#0" expanded="true" />
-                <element signature="e#2529#2530#0" expanded="true" />
-                <element signature="e#2563#2564#0" expanded="true" />
-                <element signature="e#2598#2599#0" expanded="true" />
-                <element signature="e#2640#2641#0" expanded="true" />
-                <element signature="e#2680#2681#0" expanded="true" />
-                <element signature="e#2716#2717#0" expanded="true" />
-                <element signature="e#2752#2753#0" expanded="true" />
-                <element signature="e#2798#2799#0" expanded="true" />
-                <element signature="e#2840#2841#0" expanded="true" />
-                <element signature="e#2879#2880#0" expanded="true" />
-                <element signature="e#2918#2919#0" expanded="true" />
-                <element signature="e#2970#2971#0" expanded="true" />
-                <element signature="e#3018#3019#0" expanded="true" />
-                <element signature="e#3058#3059#0" expanded="true" />
-                <element signature="e#3098#3099#0" expanded="true" />
-                <element signature="e#3152#3153#0" expanded="true" />
-                <element signature="e#3202#3203#0" expanded="true" />
-                <element signature="e#3238#3239#0" expanded="true" />
-                <element signature="e#3274#3275#0" expanded="true" />
-                <element signature="e#3320#3321#0" expanded="true" />
-                <element signature="e#3362#3363#0" expanded="true" />
-                <element signature="e#3400#3401#0" expanded="true" />
-                <element signature="e#3438#3439#0" expanded="true" />
-                <element signature="e#3488#3489#0" expanded="true" />
-                <element signature="e#3534#3535#0" expanded="true" />
-                <element signature="e#11392#11393#0" expanded="true" />
-                <element signature="e#11449#11450#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="270">
+              <caret line="35" column="24" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Point.java">
+        <entry file="file://$PROJECT_DIR$/src/TraceBlock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="1773" selection-start-line="1773" selection-end-line="1773" />
+            <state relative-caret-position="211">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
-                <element signature="e#66921#66922#0" expanded="true" />
-                <element signature="e#66966#66967#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -216,17 +246,25 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Trace.java" />
         <option value="$PROJECT_DIR$/src/FileMsgBox.fxml" />
         <option value="$PROJECT_DIR$/src/FileMsgBoxController.java" />
-        <option value="$PROJECT_DIR$/src/Binding.java" />
         <option value="$PROJECT_DIR$/src/MsgBoxController.java" />
         <option value="$PROJECT_DIR$/src/GUI.fxml" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/BuildController.java" />
-        <option value="$PROJECT_DIR$/src/Point.java" />
-        <option value="$PROJECT_DIR$/src/RunController.java" />
         <option value="$PROJECT_DIR$/src/codeRunner.fxml" />
+        <option value="$PROJECT_DIR$/src/Point.java" />
+        <option value="$PROJECT_DIR$/src/Link.java" />
+        <option value="$PROJECT_DIR$/src/JumpingMachine.java" />
+        <option value="$PROJECT_DIR$/src/RunController.java" />
+        <option value="$PROJECT_DIR$/src/Binding.java" />
+        <option value="$PROJECT_DIR$/src/Trace.java" />
+        <option value="$PROJECT_DIR$/src/Block.java" />
+        <option value="$PROJECT_DIR$/src/JKBlock.java" />
+        <option value="$PROJECT_DIR$/src/codeBlock.java" />
+        <option value="$PROJECT_DIR$/src/JumpBlock.java" />
+        <option value="$PROJECT_DIR$/src/traceBlock.java" />
+        <option value="$PROJECT_DIR$/src/TraceBlock.java" />
       </list>
     </option>
   </component>
@@ -236,7 +274,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="827" />
@@ -246,6 +284,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -253,28 +293,30 @@
               <item name="Jumping-Machine" type="b2602c69:ProjectViewProjectNode" />
               <item name="Jumping-Machine" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Jumping-Machine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jumping-Machine" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1566570125271" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568072503233" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/GUI" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -317,18 +359,19 @@
       <workItem from="1565909321242" duration="13131000" />
       <workItem from="1566160276664" duration="6230000" />
       <workItem from="1566298447125" duration="632000" />
-      <workItem from="1566347160354" duration="30142000" />
+      <workItem from="1566347160354" duration="32644000" />
+      <workItem from="1566935379735" duration="13021000" />
+      <workItem from="1568071234746" duration="1581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50135000" />
+    <option name="totallyTimeSpent" value="67239000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="828" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1440" height="827" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26037195" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26752505" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -337,17 +380,17 @@
       <window_info id="Learn" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32744566" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3292517" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32789117" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39891452" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32880434" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32700136" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32608697" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3292517" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -401,7 +444,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/RunController.java</url>
-          <line>1046</line>
+          <line>1040</line>
           <properties />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
@@ -409,45 +452,18 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GUI/CodeBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-346">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/CodeBuilder.java" />
     <entry file="file://$PROJECT_DIR$/src/FileMsgBox.fxml" />
     <entry file="file://$PROJECT_DIR$/src/FileMsgBoxController.java" />
-    <entry file="file://$PROJECT_DIR$/src/Link.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-871">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test.java" />
-    <entry file="file://$PROJECT_DIR$/src/Trace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MsgBox.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MsgBoxController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JKTrace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -476,14 +492,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="1773" selection-start-line="1773" selection-end-line="1773" />
-          <folding>
-            <element signature="e#66921#66922#0" expanded="true" />
-            <element signature="e#66966#66967#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="315">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -494,105 +507,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="39" selection-start-line="11" selection-start-column="39" selection-end-line="11" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BuildController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1108">
-          <caret line="190" lean-forward="true" selection-start-line="151" selection-start-column="7" selection-end-line="190" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Binding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="8" selection-start-line="22" selection-start-column="15" selection-end-line="23" selection-end-column="8" />
+        <state relative-caret-position="24795">
+          <caret line="1773" selection-start-line="1773" selection-end-line="1773" />
+          <folding>
+            <element signature="e#66921#66922#0" expanded="true" />
+            <element signature="e#66966#66967#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Point.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="31" lean-forward="true" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+        <state relative-caret-position="135">
+          <caret line="11" column="76" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JumpTrace.java">
+    <entry file="file://$PROJECT_DIR$/src/Link.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="62" column="57" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="57" />
+        <state relative-caret-position="73">
+          <caret line="94" column="33" lean-forward="true" selection-start-line="94" selection-start-column="33" selection-end-line="94" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI.fxml">
+    <entry file="file://$PROJECT_DIR$/src/JumpingMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BuildController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7569">
+          <caret line="190" selection-start-line="151" selection-start-column="7" selection-end-line="190" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/codeRunner.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
+        <state relative-caret-position="435">
           <caret line="29" column="110" selection-start-line="29" selection-start-column="110" selection-end-line="29" selection-end-column="110" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/codeRunner.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/MsgBox.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUI.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Binding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RunController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450">
-          <caret line="450" column="15" lean-forward="true" selection-start-line="450" selection-start-column="15" selection-end-line="450" selection-end-column="15" />
+        <state relative-caret-position="270">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CodeBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TraceBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
-            <element signature="e#1662#1663#0" expanded="true" />
-            <element signature="e#1701#1702#0" expanded="true" />
-            <element signature="e#1750#1751#0" expanded="true" />
-            <element signature="e#1798#1799#0" expanded="true" />
-            <element signature="e#1833#1834#0" expanded="true" />
-            <element signature="e#1868#1869#0" expanded="true" />
-            <element signature="e#1912#1913#0" expanded="true" />
-            <element signature="e#1952#1953#0" expanded="true" />
-            <element signature="e#2249#2250#0" expanded="true" />
-            <element signature="e#2286#2287#0" expanded="true" />
-            <element signature="e#2331#2332#0" expanded="true" />
-            <element signature="e#2375#2376#0" expanded="true" />
-            <element signature="e#2408#2409#0" expanded="true" />
-            <element signature="e#2444#2445#0" expanded="true" />
-            <element signature="e#2487#2488#0" expanded="true" />
-            <element signature="e#2529#2530#0" expanded="true" />
-            <element signature="e#2563#2564#0" expanded="true" />
-            <element signature="e#2598#2599#0" expanded="true" />
-            <element signature="e#2640#2641#0" expanded="true" />
-            <element signature="e#2680#2681#0" expanded="true" />
-            <element signature="e#2716#2717#0" expanded="true" />
-            <element signature="e#2752#2753#0" expanded="true" />
-            <element signature="e#2798#2799#0" expanded="true" />
-            <element signature="e#2840#2841#0" expanded="true" />
-            <element signature="e#2879#2880#0" expanded="true" />
-            <element signature="e#2918#2919#0" expanded="true" />
-            <element signature="e#2970#2971#0" expanded="true" />
-            <element signature="e#3018#3019#0" expanded="true" />
-            <element signature="e#3058#3059#0" expanded="true" />
-            <element signature="e#3098#3099#0" expanded="true" />
-            <element signature="e#3152#3153#0" expanded="true" />
-            <element signature="e#3202#3203#0" expanded="true" />
-            <element signature="e#3238#3239#0" expanded="true" />
-            <element signature="e#3274#3275#0" expanded="true" />
-            <element signature="e#3320#3321#0" expanded="true" />
-            <element signature="e#3362#3363#0" expanded="true" />
-            <element signature="e#3400#3401#0" expanded="true" />
-            <element signature="e#3438#3439#0" expanded="true" />
-            <element signature="e#3488#3489#0" expanded="true" />
-            <element signature="e#3534#3535#0" expanded="true" />
-            <element signature="e#11392#11393#0" expanded="true" />
-            <element signature="e#11449#11450#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>

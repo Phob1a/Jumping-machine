@@ -26,7 +26,7 @@
          </font>
       </Label>
       <ListView fx:id="tpView" layoutX="124.0" layoutY="652.0" orientation="HORIZONTAL" prefHeight="37.0" prefWidth="506.0" visible="false" />
-      <Rectangle fx:id="tpRec" arcHeight="5.0" arcWidth="5.0" fill="#ee5656" height="37.0" layoutX="-7.0" layoutY="652.0" stroke="BLACK" strokeType="INSIDE" width="131.0" visible="false"/>
+      <Rectangle fx:id="tpRec" arcHeight="5.0" arcWidth="5.0" fill="#ee5656" height="37.0" layoutX="-7.0" layoutY="652.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="131.0" />
       <Label fx:id="tpLabel" layoutX="19.0" layoutY="659.0" text="thunk point" textFill="WHITE" visible="false">
          <font>
             <Font size="18.0" />

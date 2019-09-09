@@ -7,26 +7,17 @@ import java.util.ArrayList;
 public class Link {
 
 
-    private Line line;
+    private Line line; //The JavaFX object displayed on the Canvas.
 
-    private int traceID1;
-    private int traceID2;
-    private boolean settled;
-    private Point p1;
-    private Point p2;
-    Shape executeTag;
-    private Label tag;
-    private Link correspondJKLink;
+    private int traceID1; //start point trace id
+    private int traceID2; //end point trace id
+    //private boolean settled;
+    private Point p1;  //The start point
+    private Point p2;  //The end point
+    private Label tag; //The tag on the edge.
+    private Link correspondLink; // For the link in the trace diagram, record its teacher.
 
-    public Link getCorrespondJKLink() {
-        return correspondJKLink;
-    }
-
-    public void setCorrespondJKLink(Link correspondJKLink) {
-        this.correspondJKLink = correspondJKLink;
-    }
-
-    ArrayList<Binding> bindings;
+    ArrayList<Binding> bindings; //Store all the identifiers on the edge.
 
     public Link(Line line, Point p1, Point p2){
         this.line=line;
@@ -34,9 +25,17 @@ public class Link {
         this.p2=p2;
         this.traceID1=p1.getTraceID();
         this.traceID2=p2.getTraceID();
-        this.settled=true;
+        //this.settled=true;
         this.tag=new Label();
         this.bindings=new ArrayList<>();
+    }
+
+    public Link getCorrespondJKLink() {
+        return correspondLink;
+    }
+
+    public void setCorrespondJKLink(Link correspondJKLink) {
+        this.correspondLink = correspondJKLink;
     }
 
     public Line getLine() {
@@ -88,13 +87,13 @@ public class Link {
     }
 
 
-    public boolean isSettled() {
-        return settled;
-    }
-
-    public void setSettled(boolean settled) {
-        this.settled = settled;
-    }
+//    public boolean isSettled() {
+//        return settled;
+//    }
+//
+//    public void setSettled(boolean settled) {
+//        this.settled = settled;
+//    }
 
 
     public void locateBindings(){

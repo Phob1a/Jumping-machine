@@ -1,8 +1,8 @@
-public class JKTrace extends Trace {
+public class CodeBlock extends Block {
 
     private int stuID;
 
-    public JKTrace(String type,String text){
+    public CodeBlock(String type, String text){
 
         super(type,text);
     }
